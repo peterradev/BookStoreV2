@@ -61,7 +61,7 @@ public final class EmployeeServiceClient {
         WebClient.getConfig(postClient).getInInterceptors().add(new LoggingInInterceptor());
 
         // change application/xml  to application/json get in json format
-        postClient = postClient.accept("application/xml").type("application/json").path("/employeeservice/employee");
+        postClient = postClient.accept("application/xml").type("application/xml").path("/employeeservice/employee");
 
         String postRequestURI = postClient.getCurrentURI().toString();
         System.out.println("Client POST METHOD Request URI:  " + postRequestURI);
@@ -103,7 +103,7 @@ public final class EmployeeServiceClient {
         WebClient.getConfig(deleteClient).getInInterceptors().add(new LoggingInInterceptor());
 
         // change application/xml  to application/json get in json format
-        deleteClient = deleteClient.accept("application/xml").type("application/json").path("/employeeservice/employee/XY1111");
+        deleteClient = deleteClient.accept("application/xml").type("application/xml").path("/employeeservice/employee/XY1111");
 
         String deleteRequestURI = deleteClient.getCurrentURI().toString();
         System.out.println("Client DELETE METHOD Request URI:  " + deleteRequestURI);
