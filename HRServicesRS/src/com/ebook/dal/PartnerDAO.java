@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import com.ebook.model.customer.Address;
+
 import com.ebook.model.partner.Partner;
 
 public class PartnerDAO {

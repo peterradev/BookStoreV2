@@ -17,7 +17,7 @@ import com.ebook.service.workflow.ProductActivity;
 
 
 @Path("/productservice/")
-public class ProductResource {
+public class ProductResource implements ProductService {
 
 	@GET
 	@Produces({"application/xml", "application/json"})

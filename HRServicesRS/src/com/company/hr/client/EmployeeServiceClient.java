@@ -5,11 +5,12 @@ import java.util.List;
 
 import javax.xml.ws.Response;
 
-import org.apache.cxf.jaxrs.client.WebClient;
-import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
-import com.company.hr.service.representation.EmployeeRequest;
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
+import org.apache.cxf.jaxrs.client.WebClient;
+import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
+
+import com.company.hr.service.representation.EmployeeRequest;
 
 public final class EmployeeServiceClient {
 

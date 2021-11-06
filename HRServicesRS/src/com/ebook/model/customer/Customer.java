@@ -3,9 +3,6 @@ package com.ebook.model.customer;
 import java.util.ArrayList;
 import java.util.List;
 
-// import javax.xml.bind.annotation.XmlRootElement;
-
-import com.ebook.model.customer.Address;
 import com.ebook.model.order.Order;
 
 public class Customer {

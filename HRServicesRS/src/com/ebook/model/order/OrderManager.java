@@ -1,9 +1,5 @@
 package com.ebook.model.order;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-
-import com.ebook.dal.DBHelper;
 import com.ebook.dal.OrderDAO;
 
 public class OrderManager {

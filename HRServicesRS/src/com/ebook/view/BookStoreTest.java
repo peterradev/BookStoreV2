@@ -3,6 +3,7 @@ package com.ebook.view;
 import com.ebook.model.customer.Customer;
 import com.ebook.model.customer.CustomerCard;
 import com.ebook.model.item.Product;
+import com.ebook.model.item.ProductManager;
 import com.ebook.model.order.Order;
 import com.ebook.model.order.OrderManager;
 import com.ebook.model.partner.Partner;
@@ -102,6 +103,13 @@ public class BookStoreTest {
 		System.out.println("BookStoreTest: *************** cancelling the order and updating it in our database **************");
 		System.out.println("\tName: \t\t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + " " + searchedOrder.isPaymentReceived() +"\n");
 		
+		Product p3 = new Product();
+		ProductManager pm = new ProductManager();
+		p3.setId("XY1111");
+		p3.setPrice(5.00);
+		p3.setTitle("Title");
+		
+		pm.addProduct(p3.getTitle(), p3.getPrice());
 		
 		System.out.println(orderMan.getOrderState(order));
 

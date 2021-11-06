@@ -29,7 +29,7 @@ public class ProductServiceClient {
     WebClient.getConfig(getClient).getOutInterceptors().add(new LoggingOutInterceptor());
     WebClient.getConfig(getClient).getInInterceptors().add(new LoggingInInterceptor());
 
-    getClient = getClient.accept("application/json").type("applicatoin/json").path("/productservice/product/XY1111");
+    getClient = getClient.accept("application/json").type("application/json").path("/productservice/product/XY1111");
 
     String getRequestURI = getClient.getCurrentURI().toString();
     System.out.println("Client GET METHOD Request URI: "+ getRequestURI);
@@ -37,29 +37,29 @@ public class ProductServiceClient {
     String getRequestHeaders = getClient.getHeaders().toString();
     System.out.println("Client GET METHOD Request Headers: " + getRequestHeaders);
 
-    String response = getClient.get(String.class);
-    System.out.println("GET METHOD Response: ....." + response);
+//    String response = getClient.get(String.class);
+//    System.out.println("GET METHOD Response: ....." + response);
 
 
     // Get method for all products
-    System.out.println("POST METHOD .........................................................");
-    WebClient postClient = WebClient.create("http://localhost:8081", providers);
-    WebClient.getConfig(postClient).getOutInterceptors().add(new LoggingOutInterceptor());
-    WebClient.getConfig(postClient).getInInterceptors().add(new LoggingInInterceptor());
+//    System.out.println("POST METHOD .........................................................");
+//    WebClient postClient = WebClient.create("http://localhost:8081", providers);
+//    WebClient.getConfig(postClient).getOutInterceptors().add(new LoggingOutInterceptor());
+//    WebClient.getConfig(postClient).getInInterceptors().add(new LoggingInInterceptor());
 
     // change application/xml  to application/json get in json format
-    postClient = postClient.accept("application/xml").type("application/xml").path("/productservice/product");
-
-    String postRequestURI = postClient.getCurrentURI().toString();
-    System.out.println("Client POST METHOD Request URI:  " + postRequestURI);
-    String postRequestHeaders = postClient.getHeaders().toString();
-    System.out.println("Client POST METHOD Request Headers:  " + postRequestHeaders);
-    ProductRequest productRequest = new ProductRequest();
-    productRequest.setPrice(20.20);
-    productRequest.setTitle("Title of Book");
-
-    String responsePost =  postClient.post(productRequest, String.class);
-    System.out.println("POST MEDTHOD Response ........." + responsePost);
+//    postClient = postClient.accept("application/xml").type("application/xml").path("/productservice/product");
+//
+//    String postRequestURI = postClient.getCurrentURI().toString();
+//    System.out.println("Client POST METHOD Request URI:  " + postRequestURI);
+//    String postRequestHeaders = postClient.getHeaders().toString();
+//    System.out.println("Client POST METHOD Request Headers:  " + postRequestHeaders);
+//    ProductRequest productRequest = new ProductRequest();
+//    productRequest.setPrice(20.20);
+//    productRequest.setTitle("Title of Book");
+//
+//    String responsePost =  postClient.post(productRequest, String.class);
+//    System.out.println("POST MEDTHOD Response ........." + responsePost);
 
     /*****************************************************************************************
     * GET METHOD invoke for all employees

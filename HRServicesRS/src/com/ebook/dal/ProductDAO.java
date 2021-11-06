@@ -12,6 +12,8 @@ import com.ebook.model.item.Product;
 
 
 public class ProductDAO{
+	
+	private String id = "XY1111";
 
 	public ProductDAO() {}
 
@@ -19,7 +21,7 @@ public class ProductDAO{
 
 		try {
 			Statement st = DBHelper.getConnection().createStatement();
-			String selectProductQuery = "SELECT id, title, price FROM Product WHERE id = '" + productID + "'";
+			String selectProductQuery = "SELECT id, title, price FROM products WHERE id = '" + productID + "'";
 
 			ResultSet productRS = st.executeQuery(selectProductQuery);
 			System.out.println("ItemSearch: *********** Query "+ selectProductQuery);
@@ -50,11 +52,11 @@ public class ProductDAO{
         PreparedStatement itemPst = null;
 
         try {
-        	String itemStm =  "INSERT INTO Product(id, title, price) VALUES(?, ?, ?)";
+        	String itemStm =  "INSERT INTO products(productid, title, price) VALUES(?, ?, ?)";
         	itemPst = con.prepareStatement(itemStm);
         	itemPst.setString(1, product.getId());
         	itemPst.setString(2, product.getTitle());
-        	itemPst.setDouble(3, product.getPrice());
+        	itemPst.setFloat(3, (float) product.getPrice());
         	itemPst.executeUpdate();
         } catch(SQLException ex) {
 
@@ -73,7 +75,7 @@ public class ProductDAO{
 
 	public void deleteProduct(String id) {
 		Connection con = DBHelper.getConnection();
-		String sql = "DELETE FROM Product WHERE productID = ?";
+		String sql = "DELETE FROM products WHERE productID = ?";
 		try{
 			PreparedStatement itemPst = con.prepareStatement(sql);
 			itemPst.setString(1, id);
@@ -91,7 +93,7 @@ public class ProductDAO{
 
 		try{
 			Statement st = DBHelper.getConnection().createStatement();
-			String selectProductQuery = "SELECT * FROM Product ";
+			String selectProductQuery = "SELECT * FROM products ";
 
 			ResultSet productRS = st.executeQuery(selectProductQuery);
 			System.out.println("ItemSearch: *********** Query "+ selectProductQuery);
@@ -100,9 +102,9 @@ public class ProductDAO{
 			Product product = new Product();
 
 			while(productRS.next()) {
-				product.setId(productRS.getString("id"));
+				product.setId(productRS.getString("productid"));
 				product.setTitle(productRS.getString("title"));
-				product.setPrice(productRS.getDouble("price"));
+				product.setPrice(productRS.getFloat("price"));
 				products.add(product);
 			}
 

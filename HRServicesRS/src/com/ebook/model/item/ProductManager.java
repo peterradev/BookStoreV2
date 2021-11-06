@@ -1,5 +1,7 @@
 package com.ebook.model.item;
 
+import java.util.Set;
+
 import com.ebook.dal.ProductDAO;
 
 public class ProductManager {
@@ -43,6 +45,7 @@ public class ProductManager {
 		Product product = new Product();
 		product.setTitle(title);
 		product.setPrice(price);
+		product.setId("XY1112");
 
 		try{
 			itemSearch.addItem(product);
@@ -55,6 +58,21 @@ public class ProductManager {
 		}
 		return null;
 
+	}
+	
+	
+	public Set<Product> getAllProducts() {
+		
+		
+		
+		try {
+			return itemSearch.getAllProducts();
+		}catch(Exception se) {
+			System.err.println("ProductManager: Threw an Exception addign the data");
+			System.err.println(se.getMessage());
+			se.printStackTrace();
+		}
+		return null;
 	}
 
 

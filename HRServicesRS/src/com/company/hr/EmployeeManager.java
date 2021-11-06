@@ -1,8 +1,5 @@
 package com.company.hr;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Random;
 import java.util.Set;
 
 import com.company.hr.dal.EmployeeDAO;
