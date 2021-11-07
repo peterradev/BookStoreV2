@@ -17,7 +17,7 @@ public class CustomerDAO {
 	    try {
 	    	//Get Customer
 	    	Statement st = DBHelper.getConnection().createStatement();
-	    	String selectCustomerQuery = "SELECT customerID, last_name, first_name FROM Customer WHERE customerID = '" + customerId + "'";
+	    	String selectCustomerQuery = "SELECT customerID, last_name, first_name FROM customer WHERE customerID = '" + customerId + "'";
 
 	    	ResultSet custRS = st.executeQuery(selectCustomerQuery);
 	    	System.out.println("CustomerDAO: *************** Query " + selectCustomerQuery);
@@ -71,7 +71,7 @@ public class CustomerDAO {
 
         try {
         	//Insert the customer object
-            String custStm = "INSERT INTO Customer(customerID, last_name, first_name) VALUES(?, ?, ?)";
+            String custStm = "INSERT INTO customer(customerID, last_name, first_name) VALUES(?, ?, ?)";
             custPst = con.prepareStatement(custStm);
             custPst.setString(1, cust.getCustomerId());
             custPst.setString(2, cust.getLastName());

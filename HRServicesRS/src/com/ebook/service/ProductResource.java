@@ -30,7 +30,7 @@ public class ProductResource implements ProductService {
 
 	@GET
 	@Produces({"application/xml", "applicatoin/json"})
-	@Path("prudct/{productId}")
+	@Path("product/{productId}")
 	public ProductRepresentation getProduct(@PathParam("productId") String id){
 		System.out.println("GET METHOD Request from Client with productRequest string ..........");
 		ProductActivity proActivity = new ProductActivity();
@@ -48,7 +48,7 @@ public class ProductResource implements ProductService {
 
 	@DELETE
 	@Produces({"application/xml", "applicatoin/json"})
-	@Path("prudct/{productId}")
+	@Path("product/{productId}")
 	public Response deleteProduct(@PathParam("productId") String id){
 		System.out.println("Delete Method request from Client with productRequest String ........");
 		ProductActivity proActivity = new ProductActivity();

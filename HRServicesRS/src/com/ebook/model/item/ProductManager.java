@@ -7,7 +7,7 @@ import com.ebook.dal.ProductDAO;
 public class ProductManager {
 
 
-	private ProductDAO itemSearch = new ProductDAO();
+	private static ProductDAO itemSearch = new ProductDAO();
 
 	public Product getProduct(String productID) {
 		Product product = findProductByID(productID);
@@ -42,13 +42,11 @@ public class ProductManager {
 	}
 
 	public Product addProduct(String title, double price) {
-		Product product = new Product();
-		product.setTitle(title);
-		product.setPrice(price);
-		product.setId("XY1112");
+		
+		
 
 		try{
-			itemSearch.addItem(product);
+			Product product = itemSearch.addItem(title, price);
 			System.out.println("ProductManager: Product Added");
 			return product;
 		} catch(Exception se) {

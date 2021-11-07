@@ -64,7 +64,7 @@ public class ProductServiceClient {
     /*****************************************************************************************
     * GET METHOD invoke for all employees
     *****************************************************************************************/
-    System.out.println("GET METHOD for all employees..........................................");
+    System.out.println("GET METHOD for all products..........................................");
     WebClient getAllClient = WebClient.create("http://localhost:8081", providers);
     WebClient.getConfig(getAllClient).getOutInterceptors().add(new LoggingOutInterceptor());
     WebClient.getConfig(getAllClient).getInInterceptors().add(new LoggingInInterceptor());

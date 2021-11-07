@@ -4,20 +4,24 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import com.ebook.dal.ProductDAO;
 import com.ebook.model.item.Product;
 import com.ebook.model.item.ProductManager;
 import com.ebook.service.representation.ProductRepresentation;
 
 public class ProductActivity {
-
+	
+	
 	private static ProductManager pm = new ProductManager();
+	private static ProductDAO dao = new ProductDAO();
 
 	public Set<ProductRepresentation> getProducts(){
 
 		Set<Product> products = new HashSet<Product>();
-		Set<ProductRepresentation> productRepresentations = new HashSet<ProductRepresentation>();
+		Set<ProductRepresentation> productRepresentations = new HashSet<>();
 
 		// products = pm.getAllProducts();
+		products = dao.getAllProducts();
 
 		Iterator<Product> it = products.iterator();
 		while(it.hasNext()){
@@ -33,7 +37,8 @@ public class ProductActivity {
 	}
 
 	public ProductRepresentation getProduct(String id){
-		Product pro = pm.getProduct(id);
+		Product pro = dao.getProduct(id);
+//		Product pro = pm.getProduct(id);
 
 		ProductRepresentation proRep = new ProductRepresentation();
 		proRep.setId(pro.getId());
@@ -46,8 +51,13 @@ public class ProductActivity {
 
 	public ProductRepresentation createProduct(String title, double price){
 		
+//		Product p = new Product();
+//		p.setTitle(title);
+//		p.setPrice(price);
+//		Product rep = pm.addProduct(title, price);
+		Product rep = dao.addItem(title, price);
+
 		
-		Product rep = pm.addProduct(title, price);
 
 		ProductRepresentation proRep = new ProductRepresentation();
 		proRep.setTitle(rep.getTitle());
