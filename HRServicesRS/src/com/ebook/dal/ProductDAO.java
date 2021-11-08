@@ -14,7 +14,7 @@ import com.ebook.model.item.Product;
 
 public class ProductDAO{
 	
-	private static Set<Product> products = new HashSet<Product>();
+//	private static Set<Product> products = new HashSet<>();
 	
 
 	public ProductDAO() {}
@@ -105,8 +105,11 @@ public class ProductDAO{
 
 
 	public Set<Product> getAllProducts() {
+		
+		Set<Product> products = new HashSet<>();
 
 		try{
+			
 			Statement st = DBHelper.getConnection().createStatement();
 			String selectProductQuery = "SELECT * FROM products";
 
@@ -114,9 +117,9 @@ public class ProductDAO{
 			System.out.println("ItemSearch: *********** Query "+ selectProductQuery);
 
 //			Set<Product> products = new HashSet<Product>();
-			Product product = new Product();
 
 			while(productRS.next()) {
+				Product product = new Product();
 				product.setId(productRS.getString("productid"));
 				product.setTitle(productRS.getString("title"));
 				product.setPrice(productRS.getDouble("price"));
@@ -132,7 +135,7 @@ public class ProductDAO{
 			System.err.println(se.getMessage());
 			se.printStackTrace();
 		}
-		return null;
+		return products;
 
 	}
 
