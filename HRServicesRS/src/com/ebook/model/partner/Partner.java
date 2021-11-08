@@ -6,10 +6,12 @@ import java.util.List;
 import com.ebook.model.customer.Customer;
 import com.ebook.model.item.Product;
 
+
 public class Partner extends Customer{
 	
 	private String partnerID;
-	private List<Product> products = new ArrayList<Product>();
+	private String lastName;
+	private String firstName;
 
 	
 	public Partner() {}
@@ -19,20 +21,30 @@ public class Partner extends Customer{
 		return partnerID;
 	}
 
-
 	public void setPartnerID(String partnerID) {
 		this.partnerID = partnerID;
 	}
 
+	public void setLastName(String lname) {
+		this.lastName = lname;
+	}
 
-	public List<Product> getProducts() {
-		return products;
+	public String getLastName() {
+		return this.lastName;
 	}
 
 
-	public void setProducts(List<Product> products) {
-		this.products = products;
+	public void setFirstName(String fname) {
+		this.firstName = fname;
 	}
+	
+	public String getFirstName() {
+		return this.firstName;
+	}
+
+
+	
+	
 	
 	
 }

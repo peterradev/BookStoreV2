@@ -5,18 +5,18 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "Product")
+@XmlRootElement(name = "Partner")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="")
-public class ProductRepresentation {
+public class PartnerRepresentation {
 	
 	private String id;
-	private String title;
-	private double price;
+	private String firstName;
+	private String lastName;
 	
-	public ProductRepresentation() {}
+	public PartnerRepresentation() {}
 
-	public String getId() {
+	public String getPartnerId() {
 		return id;
 	}
 
@@ -24,20 +24,20 @@ public class ProductRepresentation {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
-	public double getPrice() {
-		return price;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 	
 	
