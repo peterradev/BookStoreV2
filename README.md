@@ -1,5 +1,13 @@
 # BookStoreV2
 
+Authors: Peter Radev, Juan Arroyo
+
+A project from our Web Services couse at Loyola.
+
+
+
+--- 
+
 Requirements:
 - A local postgres database, with tables
   - products
