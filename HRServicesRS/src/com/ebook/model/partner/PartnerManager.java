@@ -53,5 +53,17 @@ public class PartnerManager {
 		}
 		return null;
 	}
+	
+	public void deletePartner(String id) {
+		
+		try {
+			partDAO.deletePartner(id);
+			System.out.println("PartnerManager: Deleted Partner");
+		} catch(Exception se) {
+			System.err.println("PartnerManager: Threw an Exception deleting the data");
+			System.err.println(se.getMessage());
+			se.printStackTrace();
+		}
+	}
 
 }

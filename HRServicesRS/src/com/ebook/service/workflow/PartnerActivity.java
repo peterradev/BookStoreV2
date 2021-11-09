@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import javax.ws.rs.core.Response;
+
 import com.ebook.dal.PartnerDAO;
 import com.ebook.model.partner.Partner;
 import com.ebook.model.partner.PartnerManager;
@@ -51,6 +53,11 @@ public class PartnerActivity {
 		parRep.setId(par.getPartnerID());
 		
 		return parRep;
+	}
+	
+	public String deleteParnter(String id) {
+		pm.deletePartner(id);
+		return "OK";
 	}
 	
 }

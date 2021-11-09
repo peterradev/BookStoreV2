@@ -52,7 +52,7 @@ public class PartnerResource implements PartnerService {
 	public Response deletePartner(@PathParam("partnerId") String id){
 		System.out.println("Delete Method request from Client with PartnerRequest String ........");
 		PartnerActivity patActivity = new PartnerActivity();
-		String res = patActivity.deletePartner(id);
+		String res = patActivity.deleteParnter(id);
 		if(res.equals("OK")){
 			return Response.status(Status.OK).build();
 		}

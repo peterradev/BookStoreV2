@@ -183,4 +183,20 @@ public class PartnerDAO {
 		}
 		return partners;
 	}
+	
+	
+	public void deletePartner(String id) {
+		Connection con = DBHelper.getConnection();
+		String sql = "DELETE FROM partners WHERE partnerid = ?";
+		
+		try {
+			PreparedStatement partPst = con.prepareStatement(sql);
+			partPst.setString(1, id);
+			partPst.executeUpdate();
+		} catch(SQLException se) {
+			System.err.println("PartnerDAO: Threw a SQLException deleting partner.");
+			System.err.println(se.getMessage());
+			se.printStackTrace();
+		}
+	}
 }
