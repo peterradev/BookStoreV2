@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 import com.ebook.model.partner.Partner;
@@ -109,6 +110,44 @@ public class PartnerDAO {
             }
         }
     }
+	
+	
+	public Partner addPartner(String firstName, String lastName) {
+		
+		Random randomGenerator = new Random();
+	    int randomInt = randomGenerator.nextInt(10000);
+	    long randomLong = randomGenerator.nextLong();
+	    String id = "XY" + randomInt;
+	    
+	    Connection con = DBHelper.getConnection();
+	    PreparedStatement partPst = null;
+	    
+	    Partner partner = new Partner();
+	    partner.setPartnerID(id);
+	    partner.setFirstName(firstName);
+	    partner.setLastName(lastName);
+	    
+	    try {
+	    	String sql = "INSERT INTO partners(partnerid, first_name, last_name) VALUES(?, ?, ?)";
+	    	partPst = con.prepareStatement(sql);
+	    	partPst.setString(1, id);
+	    	partPst.setString(2, firstName);
+	    	partPst.setString(3, lastName);
+	    	return partner;
+	    }  catch(SQLException ex) {
+
+        } finally {
+        	try {
+        		 if (con != null) {
+                     con.close();
+                 }
+        	} catch(SQLException ex) {
+        		System.err.println("ItemSearch: Threw a SQLException saving the product object.");
+        		System.err.println(ex.getMessage());
+        	}
+        }
+        return null;
+	}
 	
 	
 	 
