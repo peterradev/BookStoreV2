@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.ebook.model.partner.Partner;
 
@@ -107,4 +109,39 @@ public class PartnerDAO {
             }
         }
     }
+	
+	
+	 
+	public Set<Partner> getAllPartners(){
+		Set<Partner> partners = new HashSet<>();
+		
+		try{
+			
+			Statement st = DBHelper.getConnection().createStatement();
+			String selectPartnerQuery = "SELECT * FROM partners";
+
+			ResultSet partnerRS = st.executeQuery(selectPartnerQuery);
+			System.out.println("ItemSearch: *********** Query "+ selectPartnerQuery);
+
+//			Set<Partner> partners = new HashSet<Partner>();
+
+			while(partnerRS.next()) {
+				Partner partner = new Partner();
+				partner.setPartnerID(partnerRS.getString("partnerid"));
+				partner.setFirstName(partnerRS.getString("first_name"));
+				partner.setLastName(partnerRS.getString("last_name"));
+				partners.add(partner);
+				System.out.println("Getting Partner: " + partner.getFirstName());
+			}
+
+			partnerRS.close();
+			return partners;
+			
+		} catch (SQLException se){
+			System.err.println("PartnerDAO: Threw a SQLException retrieving the data");
+			System.err.println(se.getMessage());
+			se.printStackTrace();
+		}
+		return partners;
+	}
 }
