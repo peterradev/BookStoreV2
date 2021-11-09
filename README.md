@@ -1,6 +1,6 @@
 # BookStoreV2
 
-Authors: Peter Radv, Juan Arroya
+Authors: Peter Radv, Juan Arroyo
 
 A project from our Web Services couse at Loyola.
 
