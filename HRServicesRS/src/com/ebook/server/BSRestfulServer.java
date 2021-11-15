@@ -10,6 +10,7 @@ public class BSRestfulServer{
 	public static void main(String[] args) throws Exception{
 		JAXRSServerFactoryBean factoryBean = new JAXRSServerFactoryBean();
 		factoryBean.setResourceClasses(com.ebook.service.ProductResource.class);
+		factoryBean.setResourceClasses(com.ebook.service.PartnerResource.class);
 		factoryBean.setResourceProvider(new SingletonResourceProvider(new com.ebook.service.ProductResource()));
 		factoryBean.setAddress("http://localhost:8081/");
 		Server server = factoryBean.create();

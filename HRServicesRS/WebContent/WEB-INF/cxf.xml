@@ -17,6 +17,7 @@
   <jaxrs:server name="ProductService" address="http://localhost:8081">
 		<jaxrs:serviceBeans>
 			<ref bean="productServiceRest" />
+			<ref bean="parterServiceRest" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jacksonProvider" />
@@ -31,5 +32,6 @@
 
 	</jaxrs:server>
   	<bean id="productServiceRest" class="com.ebook.service.ProductResource" />
+  	<bean id="partnerServiceRest" class="com.ebook.service.PartnerResource" />
   
 </beans>

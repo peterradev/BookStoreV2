@@ -17,7 +17,7 @@ import com.ebook.service.workflow.PartnerActivity;
 
 
 @Path("/partnerservice/")
-public class PartnerResource implements PartnerService {
+public class PartnerResource implements PartnerService{
 
 	@GET
 	@Produces({"application/xml", "application/json"})
@@ -40,10 +40,10 @@ public class PartnerResource implements PartnerService {
 	@POST
 	@Produces({"application/xml", "application/json"})
 	@Path("/partner")
-	public PartnerRepresentation createPartner(PartnerRequest PartnerRequest){
-		System.out.println("POST METHOD Request from Client with ......." + PartnerRequest.getFirstName() + PartnerRequest.getLastName());
+	public PartnerRepresentation createPartner(PartnerRequest partnerRequest){
+		System.out.println("POST METHOD Request from Client with ......." + partnerRequest.getFirstName() + partnerRequest.getLastName());
 		PartnerActivity patActivity = new PartnerActivity();
-		return patActivity.createPartner(PartnerRequest.getFirstName(), PartnerRequest.getLastName());
+		return patActivity.createPartner(partnerRequest.getFirstName(), partnerRequest.getLastName());
 	}
 
 	@DELETE
