@@ -9,7 +9,7 @@ package com.ebook.model.customer;
 
 import com.ebook.dal.CustomerDAO;
 
-// @Path("/customerservice/")
+// @Path("/customerService/")
 public class CustomerManager {
 
 	private CustomerDAO custDAO = new CustomerDAO();
