@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import com.ebook.dal.ProductDAO;
+import com.ebook.domain.Link;
 import com.ebook.model.item.Product;
 import com.ebook.model.item.ProductManager;
 import com.ebook.service.representation.ProductRepresentation;
@@ -44,6 +45,8 @@ public class ProductActivity {
 		proRep.setId(pro.getId());
 		proRep.setTitle(pro.getTitle());
 		proRep.setPrice(pro.getPrice());
+		
+		setLinks(proRep, id);
 
 		return proRep;
 	}
@@ -72,4 +75,9 @@ public class ProductActivity {
 		return "OK";
 	}
 
+	private void setLinks(ProductRepresentation proRep, String id) {
+		Link ListOrder = new Link("List", "http://localhost:8081/productservice/product");
+		
+		proRep.setLinks(buy);
+	}
 }
