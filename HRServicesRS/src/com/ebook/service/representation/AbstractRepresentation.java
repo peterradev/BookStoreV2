@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlElement;
 import com.ebook.domain.Link;
 
 
-public class AbstractRepresentation {
+public abstract class AbstractRepresentation {
 
 	@XmlElement(name="link", namespace="")
 	protected List<Link> links;

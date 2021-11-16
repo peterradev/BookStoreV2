@@ -76,8 +76,8 @@ public class ProductActivity {
 	}
 
 	private void setLinks(ProductRepresentation proRep, String id) {
-		Link ListOrder = new Link("List", "http://localhost:8081/productservice/product");
+		Link listOrder = new Link("view", "http://localhost:8081/productservice/product/"+id , "application/json");
 		
-		proRep.setLinks(buy);
+		proRep.setLinks(listOrder);
 	}
 }

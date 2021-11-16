@@ -36,8 +36,8 @@ public class ProductResource implements ProductService {
 	
 	@Override
 	@GET
-	@Produces({MediaType.APPLICATION_JSON})
-	@Path("/{productid}")
+	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
+	@Path("/{productId}")
 	public ProductRepresentation getProduct(@PathParam("productId") String id) {
 		ProductActivity proActivity = new ProductActivity();
 		return proActivity.getProduct(id);
