@@ -3,14 +3,12 @@ package com.ebook.service.client;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.ws.Response;
+import javax.ws.rs.core.Response;
 
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
-
-import com.ebook.service.representation.ProductRequest;
 
 public class ProductServiceClient {
 
