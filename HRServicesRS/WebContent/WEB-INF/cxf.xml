@@ -28,6 +28,8 @@
 			<jaxrs:schemaLocation>com.ebook.service.representation.ProductRepresentation</jaxrs:schemaLocation>			
 			<jaxrs:schemaLocation>com.ebook.service.representation.PartnerRequest</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>com.ebook.service.representation.PartnerRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>com.ebook.service.representation.PartnerRepresentation</jaxrs:schemaLocation>
+			
 		</jaxrs:schemaLocations>
 
 	</jaxrs:server>

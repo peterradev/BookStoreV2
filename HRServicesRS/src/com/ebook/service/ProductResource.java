@@ -8,13 +8,18 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
+
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 
 import com.ebook.service.representation.ProductRepresentation;
 import com.ebook.service.representation.ProductRequest;
 import com.ebook.service.workflow.ProductActivity;
 
+
+@CrossOriginResourceSharing(allowAllOrigins = true)
 
 @Path("/productservice/")
 public class ProductResource implements ProductService {
@@ -27,15 +32,26 @@ public class ProductResource implements ProductService {
 		ProductActivity proActivity = new ProductActivity();
 		return proActivity.getProducts();
 	}
-
+	
+	
+	@Override
 	@GET
-	@Produces({"application/xml", "applicatoin/json"})
-	@Path("product/{productId}")
-	public ProductRepresentation getProduct(@PathParam("productId") String id){
-		System.out.println("GET METHOD Request from Client with productRequest string ..........");
+	@Produces({MediaType.APPLICATION_JSON})
+	@Path("/{productid}")
+	public ProductRepresentation getProduct(@PathParam("productId") String id) {
 		ProductActivity proActivity = new ProductActivity();
 		return proActivity.getProduct(id);
 	}
+	
+//	
+//	@GET
+//	@Produces({"application/xml", "applicatoin/json"})
+//	@Path("product/{productId}")
+//	public ProductRepresentation getProduct(@PathParam("productId") String id){
+//		System.out.println("GET METHOD Request from Client with productRequest string ..........");
+//		ProductActivity proActivity = new ProductActivity();
+//		return proActivity.getProduct(id);
+//	}
 
 	@POST
 	@Produces({"application/xml", "application/json"})
