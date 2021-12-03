@@ -42,5 +42,16 @@ public class CustomerManager {
 			System.err.println(se.getMessage());
 		}
 	}
+	
+	public void deleteCustomer(String customerId) {
+		try {
+			custDAO.deleteCustomer(customerId);
+			System.out.println("CustomerManager: Deleted Customer");
+		} catch(Exception se) {
+			System.err.println("CustomerManager: Threw an Exception deleting the customer");
+			System.err.println(se.getMessage());
+			se.printStackTrace();
+		}
+	}
 
 }

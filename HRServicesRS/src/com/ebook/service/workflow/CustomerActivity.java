@@ -20,12 +20,12 @@ public class CustomerActivity {
 		Set<Customer> customers = new  HashSet<>();
 		Set<CustomerRepresentation> customerRepresentations = new HashSet<>();
 		
-		customer = dao.getAllCustomers();
-		Iterator<Customer> it = customer.iterator();
+		customers = dao.getAllCustomers();
+		Iterator<Customer> it = customers.iterator();
 		while(it.hasNext()) {
 			Customer cus = (Customer)it.next();
 			CustomerRepresentation customerRepresentation = new CustomerRepresentation();
-			customerRepresentation.setId(cus.getCustomerID());
+			customerRepresentation.setId(cus.getCustomerId());
 			customerRepresentation.setFirstName(cus.getFirstName());
 			customerRepresentation.setLastName(cus.getLastName());
 			
@@ -38,7 +38,7 @@ public class CustomerActivity {
 		Customer pro = dao.getCustomer(id);
 		CustomerRepresentation parRep = new CustomerRepresentation();
 		parRep.setFirstName(pro.getFirstName());
-		parRep.setId(pro.getCustomerID());
+		parRep.setId(pro.getCustomerId());
 		parRep.setLastName(pro.getLastName());
 		
 		return parRep;
@@ -50,7 +50,7 @@ public class CustomerActivity {
 		CustomerRepresentation parRep = new CustomerRepresentation();
 		parRep.setFirstName(par.getFirstName());
 		parRep.setLastName(par.getLastName());
-		parRep.setId(par.getCustomerID());
+		parRep.setId(par.getCustomerId());
 		
 		return parRep;
 	}

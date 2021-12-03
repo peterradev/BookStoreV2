@@ -13,19 +13,19 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/cxf-core-3.4.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/cxf-rt-frontend-jaxrs-3.4.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/cxf-rt-rs-client-3.4.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/cxf-rt-transports-http-3.4.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/cxf-rt-transports-http-jetty-3.4.5.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/javax.servlet-api-3.0.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/javax.ws.rs-api-2.1.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/org.springframework.aop-3.2.0.release.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/org.springframework.beans-3.1.2.release.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/org.springframework.context-3.1.0.release.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/org.springframework.expression-3.1.0.release.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/org.springframework.web-3.0.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/postgresql-42.3.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/peter/Desktop/Comp 333 Project/BookStoreV2/RequiredJars/spring-core-3.2.4.release.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/cxf-core-3.4.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/cxf-rt-frontend-jaxrs-3.4.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/cxf-rt-rs-client-3.4.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/cxf-rt-transports-http-3.4.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/cxf-rt-transports-http-jetty-3.4.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/javax.servlet-api-3.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/javax.ws.rs-api-2.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/org.springframework.aop-3.2.0.release.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/org.springframework.beans-3.1.2.release.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/org.springframework.context-3.1.0.release.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/org.springframework.expression-3.1.0.release.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/org.springframework.web-3.0.1.RELEASE.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/postgresql-42.3.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fstpe/Documents/Loyola/Fall 2021/COMP 333/Book Store/BookStoreV2/RequiredJars/spring-core-3.2.4.release.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
