@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import com.ebook.dal.OrderDAO;
+import com.ebook.domain.Link;
 import com.ebook.model.order.Order;
 import com.ebook.model.order.OrderManager;
 import com.ebook.service.representation.OrderRepresentation;
@@ -40,6 +41,8 @@ public class OrderActivity {
 		ordRep.setId(ord.getOrderId());
 		ordRep.setOrderStatus(ord.getOrderState());
 
+		setLinks(ordRep, id);
+
 		return ordRep;
 	}
 
@@ -61,5 +64,10 @@ public class OrderActivity {
 		return ordRep;
 	}
 
+	private void setLinks(OrderRepresentation ordRep, String id){
+		Link listOrder = new Link("view", "http://localhost:8081/orderservice/order/"+id, "application/json");
+
+		ordRep.setLinks(listOrder);
+	}
 
 }

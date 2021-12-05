@@ -1,0 +1,38 @@
+body{
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    text-align: center;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f4f4f4;
+}
+nav.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.links{
+    display: flex;
+    justify-content: space-between;
+    margin: 1.5rem 0 0 0 ;
+}
+
+.links li{
+    text-decoration: none;
+    list-style: none;  
+    margin: 0 1rem;
+}
+
+
+.links li a{
+    text-decoration: none;
+    color: black;
+}
+
+main section#books{
+    /* display: flex; */
+    /* margin: auto; */
+    padding-top: 2rem;
+}
