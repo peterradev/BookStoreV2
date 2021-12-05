@@ -74,6 +74,8 @@ public class ProductActivity {
 		pm.deleteProduct(id);
 		return "OK";
 	}
+	
+	
 
 	private void setLinks(ProductRepresentation proRep, String id) {
 		Link listOrder = new Link("view", "http://localhost:8081/productservice/product/"+id , "application/json");

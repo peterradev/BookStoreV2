@@ -5,6 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashSet;
+import java.util.Random;
+import java.util.Set;
 
 import com.ebook.model.order.Order;
 
@@ -40,32 +43,32 @@ public class OrderDAO {
     return null;
   }
 
-  public void addOrder(Order order) {
-    Connection con = DBHelper.getConnection();
-    PreparedStatement orderPst = null;
-
-    try {
-      String orderStm = "INSERT INTO orders (orderID, orderState, payment_received) VALUES(?, ?, ?)";
-      orderPst = con.prepareStatement(orderStm);
-      orderPst.setString(1, order.getOrderId());
-      orderPst.setString(2, order.getOrderState());
-      orderPst.setBoolean(3, order.isPaymentReceived());
-      orderPst.executeUpdate();
-    } catch (SQLException ex) {
-
-    } finally {
-
-      try {
-        if (con != null) {
-          con.close();
-        }
-      } catch (SQLException se) {
-        System.err.println("OrderDAO: threw a SQLException saving the order object");
-        System.err.println(se.getMessage());
-      }
-
-    }
-  }
+//  public void addOrder(Order order) {
+//    Connection con = DBHelper.getConnection();
+//    PreparedStatement orderPst = null;
+//
+//    try {
+//      String orderStm = "INSERT INTO orders (orderID, orderState, payment_received) VALUES(?, ?, ?)";
+//      orderPst = con.prepareStatement(orderStm);
+//      orderPst.setString(1, order.getOrderId());
+//      orderPst.setString(2, order.getOrderState());
+//      orderPst.setBoolean(3, order.isPaymentReceived());
+//      orderPst.executeUpdate();
+//    } catch (SQLException ex) {
+//
+//    } finally {
+//
+//      try {
+//        if (con != null) {
+//          con.close();
+//        }
+//      } catch (SQLException se) {
+//        System.err.println("OrderDAO: threw a SQLException saving the order object");
+//        System.err.println(se.getMessage());
+//      }
+//
+//    }
+//  }
 
   public void confirmOrder(Order order) {
     Connection con = DBHelper.getConnection();
@@ -225,5 +228,78 @@ public class OrderDAO {
 
   }
 
+  public Set<Order> getAllOrders(){
+	  Set<Order> orders = new HashSet<>();
+	  try{
+			
+			Statement st = DBHelper.getConnection().createStatement();
+			String selectCustomerQuery = "SELECT * FROM orders";
 
+			ResultSet orderRS = st.executeQuery(selectCustomerQuery);
+			System.out.println("ItemSearch: *********** Query "+ selectCustomerQuery);
+
+
+			while(orderRS.next()) {
+				Order order = new Order();
+				order.setOrderId(orderRS.getString("orderid"));
+				order.setOrderState(orderRS.getString("orderState"));
+			}
+
+			orderRS.close();
+			return orders;
+			
+		} catch (SQLException se){
+			System.err.println("ProductDAO: Threw a SQLException retrieving the data");
+			System.err.println(se.getMessage());
+			se.printStackTrace();
+		}
+		return orders;
+  }
+  
+  public void deleteOrder(String id) {
+		Connection con = DBHelper.getConnection();
+		String sql = "DELETE FROM orders WHERE orderID = ?";
+		try{
+			PreparedStatement custPst = con.prepareStatement(sql);
+			custPst.setString(1, id);
+			custPst.executeUpdate();
+		} catch(SQLException se){
+			System.err.println("OrderDAO: Threw a SQLException deleting order.");
+			System.err.println(se.getMessage());
+			se.printStackTrace();
+		}
+  }
+  
+  public Order addOrder(String orderState) {
+	  Order order = new Order();
+	  Random randomGenerator = new Random();
+	  int randomInt = randomGenerator.nextInt(10000);
+	  String id = "YZ" + randomInt;
+	  
+	  order.setOrderId(id);
+	  order.setOrderState(orderState);
+	  
+	  Connection con = DBHelper.getConnection();
+	  PreparedStatement ordPst = null;
+	  try {
+		  String ordStm = "INSERT INTO orders(orderid, orderState) VALUES(?,?)";
+		  ordPst.setString(1, order.getOrderId());
+		  ordPst.setString(2, order.getOrderState());
+		  return order;
+	  } catch(SQLException ex) {
+		  
+	  } finally {
+		  try { 
+			  if(con != null) {
+				  con.close();
+			  }
+		  } catch(SQLException ex) {
+			  	System.err.println("OrderDAO: Threw a SQLException saving the order");
+				System.err.println(ex.getMessage());
+				ex.printStackTrace();
+		  }
+	  }
+	  return null;
+  }
+  	
 }

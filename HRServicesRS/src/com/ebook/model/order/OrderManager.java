@@ -27,7 +27,7 @@ public class OrderManager {
 	public void addOrder(Order order) {
 
 		try {
-			orderDAO.addOrder(order);
+			orderDAO.addOrder(order.getOrderState());
 		} catch (Exception se) {
 			System.err.println("OrderManager: Threw an Exception retreiving order");
 			System.err.println(se.getMessage());
@@ -105,6 +105,12 @@ public class OrderManager {
 			System.err.println(se.getMessage());
 		}
 		return null;
+	}
+
+	public void deleteOrder(String id) {
+		// TODO Auto-generated method stub
+		
+		
 	}
 
 }
