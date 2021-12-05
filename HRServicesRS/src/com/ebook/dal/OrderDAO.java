@@ -9,7 +9,9 @@ import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
+import com.ebook.model.item.Product;
 import com.ebook.model.order.Order;
+import com.ebook.model.order.OrderDetail;
 
 public class OrderDAO {
 
@@ -33,7 +35,18 @@ public class OrderDAO {
         order.setPaymentReceived(orderRS.getBoolean("payment_received"));
       }
       orderRS.close();
-
+      
+      String selectOrderDetailQuery = "SELECT product, quantity FROM order_detail WHERE orderid="+orderId;
+      ResultSet ordRS = st.executeQuery(selectOrderDetailQuery);
+      OrderDetail orderDetail = new OrderDetail();
+      
+      System.out.println("OrderDAO: *********** Query " + selectOrderDetailQuery);
+      while(ordRS.next()) {
+    	  orderDetail.setProduct((Product) ordRS.getObject("product"));
+    	  orderDetail.setQuantity(ordRS.getInt("quantity"));
+      }
+      
+      
       return order;
     } catch (SQLException se) {
       System.err.println("OrderDAO: Threw a SQLException retreiving the order object.");
