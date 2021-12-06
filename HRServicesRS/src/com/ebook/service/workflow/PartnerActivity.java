@@ -42,6 +42,25 @@ public class PartnerActivity {
 
 		return parRep;
 	}
+	
+	public Set<PartnerRepresentation> findPartner(String name) {
+		Set<Partner> partners = new  HashSet<>();
+		Set<PartnerRepresentation> partnerRepresentations = new HashSet<>();
+		
+		partners = dao.findPartner(name);
+		Iterator<Partner> it = partners.iterator();
+		while(it.hasNext()) {
+			Partner par = (Partner)it.next();
+			PartnerRepresentation partnerRepresentation = new PartnerRepresentation();
+			partnerRepresentation.setId(par.getPartnerID());
+			partnerRepresentation.setFirstName(par.getFirstName());
+			partnerRepresentation.setLastName(par.getLastName());
+
+			partnerRepresentations.add(partnerRepresentation);
+		}
+		return partnerRepresentations;
+				
+	}
 
 
 	public PartnerRepresentation createPartner(String firstName, String lastName) {

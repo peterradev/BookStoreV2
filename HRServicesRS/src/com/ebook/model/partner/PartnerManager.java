@@ -65,5 +65,16 @@ public class PartnerManager {
 			se.printStackTrace();
 		}
 	}
+	
+	public Set<Partner> findPartner(String name){
+		try {
+			return partDAO.findPartner(name);
+		} catch(Exception se) {
+			System.err.println("PartnerManager: Threw an Exception addign the data");
+			System.err.println(se.getMessage());
+			se.printStackTrace();
+		}
+		return null;
+	}
 
 }

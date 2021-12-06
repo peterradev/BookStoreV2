@@ -200,28 +200,41 @@ public class PartnerDAO {
 		}
 	}
 	
-	public Partner findPartner(String name) {
+	public Set<Partner> findPartner(String name) {
+		
+		Set<Partner> partners = new HashSet<>();
+		
 		String[] sentence = name.split("\\s+");
 		
 		String firstName = sentence[0];
 		String lastName = sentence[1];
 		
-		Statement st = DBHelper.getConnection().createStatement();
-		String selectPartnerQuery = "SELECT partnerID, last_name, first_name FROM Partner WHERE first_name = '" + firstName + "*'";
-
-    	ResultSet parRS = st.executeQuery(selectPartnerQuery);      
-    	System.out.println("PartnerDAO: *************** Query " + selectPartnerQuery);
-    	
-    	//Get Partner
-    	Partner partner = new Partner();
-    	while ( parRS.next() ) {
-    	  partner.setPartnerID(parRS.getString("partnerID"));
-    	  partner.setLastName(parRS.getString("last_name"));
-    	  partner.setFirstName(parRS.getString("first_name"));
-    	}
-    	//close to manage resources
-    	parRS.close();
-		
+		try {
+			
+			Statement st = DBHelper.getConnection().createStatement();
+			String selectPartnerQuery = "SELECT partnerID, last_name, first_name FROM Partner WHERE first_name = '" + firstName + "*'";
+			
+			ResultSet parRS = st.executeQuery(selectPartnerQuery);      
+			System.out.println("PartnerDAO: *************** Query " + selectPartnerQuery);
+			
+			//Get Partner
+			while ( parRS.next() ) {
+				Partner partner = new Partner();
+				partner.setPartnerID(parRS.getString("partnerID"));
+				partner.setLastName(parRS.getString("last_name"));
+				partner.setFirstName(parRS.getString("first_name"));
+				partners.add(partner);
+				
+				//close to manage resources
+		    	parRS.close();
+		    	return partners;
+				
+			}
+		}catch(SQLException ex) {
+			System.err.println("PartnerDAO: Threw a SQLException retrieving the data");
+			System.err.println(ex.getMessage());
+			ex.printStackTrace();
+		}
 		return null;
 	}
 	
