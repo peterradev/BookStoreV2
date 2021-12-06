@@ -60,58 +60,21 @@ public class BookStoreTest {
 		order.setOrderId("11111");
 
 		orderMan.addOrder(order);
-		orderMan.getOrder(order.getOrderId());
+//		orderMan.getOrder(order.getOrderId());
 
 		System.out.println("BookStoreTest: ************** Order is inserted in BookStore Database ************");
 
 		System.out.println("BookStoreTest: ************** trying to search order in the database *************");
 
-		Order searchedOrder = orderMan.findOrderById("11111");
+//		Order searchedOrder = orderMan.findOrderById("11111");
 
-		System.out.println("\tName: \t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + "\n");
+//		System.out.println("\tName: \t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + "\n");
 
 		System.out.println("BookStoreTest: ************* updating the order state in the the database *********");
 	
 		orderMan.confirmOrder(order);
 		
 	
-		
-		// The order manager does confirm order but gets the order state faster than it can update it, in the database it shows order state as ordered
-		
-		System.out.println("\tName: \t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + "\n");
-		
-		
-		// payment received changes to true
-		orderMan.orderPayed(order);
-		
-		System.out.println("\tName: \t\t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + " " + searchedOrder.isPaymentReceived() + "\n");
-
-		
-		// 
-		orderMan.orderSentOut(order);
-		System.out.println("\tName: \t\t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + " " + searchedOrder.isPaymentReceived() + "\n");
-
-		
-		orderMan.orderDelivered(order);
-		
-		orderMan.isFinished(order);
-		System.out.println("\tName: \t\t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + " " + searchedOrder.isPaymentReceived() + "\n");
-		
-		
-		// Here it is canceling the order
-//		orderMan.cancelOrder(order);
-		System.out.println("BookStoreTest: *************** cancelling the order and updating it in our database **************");
-		System.out.println("\tName: \t\t\t\t" + searchedOrder.getOrderId() + " " + searchedOrder.getOrderState() + " " + searchedOrder.isPaymentReceived() +"\n");
-		
-		Product p3 = new Product();
-		ProductManager pm = new ProductManager();
-		p3.setId("XY1111");
-		p3.setPrice(5.00);
-		p3.setTitle("Title");
-		
-		pm.addProduct(p3.getTitle(), p3.getPrice());
-		
-		System.out.println(orderMan.getOrderState(order));
 
 	}
 

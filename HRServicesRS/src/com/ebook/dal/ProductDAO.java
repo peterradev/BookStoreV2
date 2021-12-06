@@ -23,7 +23,7 @@ public class ProductDAO{
 
 		try {
 			Statement st = DBHelper.getConnection().createStatement();
-			String selectProductQuery = "SELECT productId, title, price FROM products WHERE productid = '" + productID + "'";
+			String selectProductQuery = "SELECT productId, title, price FROM product WHERE productid = '" + productID + "'";
 
 			ResultSet productRS = st.executeQuery(selectProductQuery);
 			System.out.println("ItemSearch: *********** Query "+ selectProductQuery);
@@ -65,7 +65,7 @@ public class ProductDAO{
         PreparedStatement itemPst = null;
 
         try {
-        	String itemStm =  "INSERT INTO products(productid, title, price) VALUES(?, ?, ?)";
+        	String itemStm =  "INSERT INTO product(productid, title, price) VALUES(?, ?, ?)";
         	itemPst = con.prepareStatement(itemStm);
         	itemPst.setString(1, product.getId());
         	itemPst.setString(2, product.getTitle());
@@ -90,7 +90,7 @@ public class ProductDAO{
 
 	public void deleteProduct(String id) {
 		Connection con = DBHelper.getConnection();
-		String sql = "DELETE FROM products WHERE productID = ?";
+		String sql = "DELETE FROM product WHERE productID = ?";
 		try{
 			PreparedStatement itemPst = con.prepareStatement(sql);
 			itemPst.setString(1, id);
@@ -111,7 +111,7 @@ public class ProductDAO{
 		try{
 			
 			Statement st = DBHelper.getConnection().createStatement();
-			String selectProductQuery = "SELECT * FROM products";
+			String selectProductQuery = "SELECT * FROM product";
 
 			ResultSet productRS = st.executeQuery(selectProductQuery);
 			System.out.println("ItemSearch: *********** Query "+ selectProductQuery);

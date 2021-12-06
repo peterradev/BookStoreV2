@@ -14,6 +14,7 @@ public class Testing {
 		ProductManager productManager = new ProductManager();
 		productManager.addProduct(product.getTitle(), product.getPrice());
 		
+		
 	}
 
 }

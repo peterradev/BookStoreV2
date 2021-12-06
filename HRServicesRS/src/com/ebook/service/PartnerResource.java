@@ -58,4 +58,11 @@ public class PartnerResource implements PartnerService{
 		}
 		return null;
 	}
+	
+	@GET
+	@Produces({"application/xml", "application/json"})
+	@Path("/partner?{name}&{lastName}")
+	public PartnerRepresentation findPartner()
+	
+	
 }
