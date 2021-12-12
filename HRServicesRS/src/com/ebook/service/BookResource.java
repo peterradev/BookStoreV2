@@ -13,6 +13,8 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 
 import com.ebook.service.representation.BookRepresentation;
+import com.ebook.service.representation.BookRequest;
+import com.ebook.service.workflow.BookActivity;
 
 
 @CrossOriginResourceSharing(allowAllOrigins = true)

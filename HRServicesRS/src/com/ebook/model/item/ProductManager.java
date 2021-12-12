@@ -41,12 +41,12 @@ public class ProductManager {
 
 	}
 
-	public Product addProduct(String title, double price) {
+	public Product addProduct(String title, double price, String partnerid) {
 		
 		
 
 		try{
-			Product product = itemSearch.addItem(title, price);
+			Product product = itemSearch.addItem(title, price, partnerid);
 			System.out.println("ProductManager: Product Added");
 			return product;
 		} catch(Exception se) {

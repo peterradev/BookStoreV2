@@ -13,9 +13,9 @@ import com.ebook.model.item.Product;
 
 
 public class ProductDAO{
-	
+
 //	private static Set<Product> products = new HashSet<>();
-	
+
 
 	public ProductDAO() {}
 
@@ -23,7 +23,7 @@ public class ProductDAO{
 
 		try {
 			Statement st = DBHelper.getConnection().createStatement();
-			String selectProductQuery = "SELECT productId, title, price FROM product WHERE productid = '" + productID + "'";
+			String selectProductQuery = "SELECT productId, title, price  FROM product WHERE productid = '" + productID + "'";
 
 			ResultSet productRS = st.executeQuery(selectProductQuery);
 			System.out.println("ItemSearch: *********** Query "+ selectProductQuery);
@@ -33,6 +33,7 @@ public class ProductDAO{
 				product.setId(productRS.getString("productId"));
 				product.setTitle(productRS.getString("title"));
 				product.setPrice(productRS.getDouble("price"));
+//				product.setPartnerId(productRS.getString("partnerid"));
 			}
 
 			productRS.close();
@@ -49,27 +50,29 @@ public class ProductDAO{
 		return null;
 	}
 
-	public Product addItem(String title, double price) {
-		
+	public Product addItem(String title, double price, String partnerid) {
+
 		Product product = new Product();
 		Random randomGenerator = new Random();
 	    int randomInt = randomGenerator.nextInt(10000);
 	    long randomLong = randomGenerator.nextLong();
 	    String id = "XY" + randomInt;
-	    
+
 	    product.setId(id);
 	    product.setTitle(title);
 	    product.setPrice(price);
-		
+			product.setPartnerId(partnerid);
+
 		Connection con = DBHelper.getConnection();
         PreparedStatement itemPst = null;
 
         try {
-        	String itemStm =  "INSERT INTO product(productid, title, price) VALUES(?, ?, ?)";
+        	String itemStm =  "INSERT INTO product(productid, title, price) VALUES(?, ?, ?, ?)";
         	itemPst = con.prepareStatement(itemStm);
         	itemPst.setString(1, product.getId());
         	itemPst.setString(2, product.getTitle());
         	itemPst.setFloat(3, (float) product.getPrice());
+//					itemPst.setString(4, product.getPartnerId());
         	itemPst.executeUpdate();
         	return product;
         } catch(SQLException ex) {
@@ -105,11 +108,11 @@ public class ProductDAO{
 
 
 	public Set<Product> getAllProducts() {
-		
+
 		Set<Product> products = new HashSet<>();
 
 		try{
-			
+
 			Statement st = DBHelper.getConnection().createStatement();
 			String selectProductQuery = "SELECT * FROM product";
 
@@ -123,13 +126,14 @@ public class ProductDAO{
 				product.setId(productRS.getString("productid"));
 				product.setTitle(productRS.getString("title"));
 				product.setPrice(productRS.getDouble("price"));
+//				product.setPartnerId(productRS.getString("partnerid"));
 				products.add(product);
 				System.out.println("Getting Product: " + product.getTitle());
 			}
 
 			productRS.close();
 			return products;
-			
+
 		} catch (SQLException se){
 			System.err.println("ProductDAO: Threw a SQLException retrieving the data");
 			System.err.println(se.getMessage());
@@ -138,6 +142,4 @@ public class ProductDAO{
 		return products;
 
 	}
-
-
 }
