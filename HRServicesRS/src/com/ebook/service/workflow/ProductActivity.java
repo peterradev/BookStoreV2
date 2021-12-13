@@ -21,7 +21,6 @@ public class ProductActivity {
 		Set<Product> products = new HashSet<Product>();
 		Set<ProductRepresentation> productRepresentations = new HashSet<>();
 
-		// products = pm.getAllProducts();
 		products = dao.getAllProducts();
 
 		Iterator<Product> it = products.iterator();
@@ -32,22 +31,24 @@ public class ProductActivity {
 			productRepresentation.setTitle(pro.getTitle());
 			productRepresentation.setPrice(pro.getPrice());
 
+			//Add link
+			setLinks(productRepresentation, pro.getId());
 			productRepresentations.add(productRepresentation);
 		}
 		return productRepresentations;
 	}
-	
-	
-	
-	
-	
+
+
+
+
+
 	public Set<ProductRepresentation> getProductByPartner(String id){
-		
+
 		Set<Product> products = new HashSet<Product>();
 		Set<ProductRepresentation> productRepresentations = new HashSet<>();
-		
+
 		products = dao.getProductByPartner(id);
-		
+
 		Iterator<Product> it = products.iterator();
 		while(it.hasNext()) {
 			Product pro = it.next();
@@ -57,16 +58,17 @@ public class ProductActivity {
 			productRepresentation.setPrice(pro.getPrice());
 
 			productRepresentations.add(productRepresentation);
-			
+
 		}
-		
+
 		return productRepresentations;
-		
+
 	}
-	
+
 
 	public ProductRepresentation getProduct(String id){
 		Product pro = dao.getProduct(id);
+
 //		Product pro = pm.getProduct(id);
 		String partnerid = pro.getPartnerId();
 		ProductRepresentation proRep = new ProductRepresentation();
@@ -74,6 +76,8 @@ public class ProductActivity {
 		proRep.setTitle(pro.getTitle());
 		proRep.setPrice(pro.getPrice());
 		
+		//Add link
+		setLinks(proRep, pro.getId());
 		setLinks(proRep, id, partnerid);
 
 		return proRep;
@@ -104,9 +108,9 @@ public class ProductActivity {
 	}
 	
 	
-	
-	
-	
+
+
+
 
 	private void setLinks(ProductRepresentation proRep, String id, String partnerid) {
 		Link deleteProduct = new Link("delete", "http://localhost:8081/productservice/product/"+id , "application/json");

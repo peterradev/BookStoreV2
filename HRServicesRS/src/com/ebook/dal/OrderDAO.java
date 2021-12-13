@@ -5,7 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -17,44 +19,30 @@ public class OrderDAO {
 
   public OrderDAO() {
   }
-
+  
   public Order getOrder(String orderId) {
-    try {
-
-      Statement st = DBHelper.getConnection().createStatement();
-      String selectQueryString = "SELECT orderID, orderState, payment_received FROM orders WHERE orderID = '" + orderId
-          + "'";
-
-      ResultSet orderRS = st.executeQuery(selectQueryString);
-      System.out.println("OrderDAO: **************** Query " + selectQueryString);
-
-      Order order = new Order();
-      while (orderRS.next()) {
-        order.setOrderId(orderRS.getString("orderID"));
-        order.setOrderState(orderRS.getString("orderState"));
-        order.setPaymentReceived(orderRS.getBoolean("payment_received"));
-      }
-      orderRS.close();
-      
-      String selectOrderDetailQuery = "SELECT product, quantity FROM order_detail WHERE orderid="+orderId;
-      ResultSet ordRS = st.executeQuery(selectOrderDetailQuery);
-      OrderDetail orderDetail = new OrderDetail();
-      
-      System.out.println("OrderDAO: *********** Query " + selectOrderDetailQuery);
-      while(ordRS.next()) {
-    	  orderDetail.setProduct((Product) ordRS.getObject("product"));
-    	  orderDetail.setQuantity(ordRS.getInt("quantity"));
-      }
-      
-      
-      return order;
-    } catch (SQLException se) {
-      System.err.println("OrderDAO: Threw a SQLException retreiving the order object.");
-      System.err.println(se.getMessage());
-      se.printStackTrace();
-    }
-    return null;
+	  Order order = new Order();
+	  
+	  try {
+		  Statement st = DBHelper.getConnection().createStatement();
+		  
+		  String query = "SELECT orderId, orderstate FROM orders where orderid='"+orderId+"'";
+		  
+		  ResultSet orderRS = st.executeQuery(query);
+		  
+		  while (orderRS.next()) {
+			  // Return not needed fields as null in Order object
+			  order.setOrderId(orderRS.getString("orderId"));
+			  order.setOrderState(orderRS.getString("orderState"));
+		  }
+		  orderRS.close();
+	  	  
+	  }catch(SQLException e) {
+		  e.printStackTrace();
+	  }
+		  return order;  
   }
+
 
 //  public void addOrder(Order order) {
 //    Connection con = DBHelper.getConnection();
@@ -249,21 +237,17 @@ public class OrderDAO {
 			String selectCustomerQuery = "SELECT * FROM orders";
 
 			ResultSet orderRS = st.executeQuery(selectCustomerQuery);
-			System.out.println("ItemSearch: *********** Query "+ selectCustomerQuery);
-
 
 			while(orderRS.next()) {
 				Order order = new Order();
 				order.setOrderId(orderRS.getString("orderid"));
 				order.setOrderState(orderRS.getString("orderState"));
+				orders.add(order);
 			}
 
 			orderRS.close();
-			return orders;
 			
 		} catch (SQLException se){
-			System.err.println("ProductDAO: Threw a SQLException retrieving the data");
-			System.err.println(se.getMessage());
 			se.printStackTrace();
 		}
 		return orders;

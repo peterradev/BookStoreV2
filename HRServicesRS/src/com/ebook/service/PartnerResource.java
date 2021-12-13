@@ -21,7 +21,7 @@ public class PartnerResource implements PartnerService{
 
 	@GET
 	@Produces({"application/xml", "application/json"})
-	@Path("/partner")
+	@Path("/partners")
 	public Set<PartnerRepresentation> getPartners(){
 		System.out.println("GET METHOD Request for all partners .....");
 		PartnerActivity patActivity = new PartnerActivity();
@@ -29,8 +29,8 @@ public class PartnerResource implements PartnerService{
 	}
 
 	@GET
-	@Produces({"application/xml", "applicatoin/json"})
-	@Path("partner/{partnerId}")
+	@Produces({"application/xml", "application/json"})
+	@Path("partner/id/{partnerId}")
 	public PartnerRepresentation getPartner(@PathParam("partnerId") String id){
 		System.out.println("GET METHOD Request from Client with PartnerRequest string ..........");
 		PartnerActivity patActivity = new PartnerActivity();
@@ -47,8 +47,8 @@ public class PartnerResource implements PartnerService{
 	}
 
 	@DELETE
-	@Produces({"application/xml", "applicatoin/json"})
-	@Path("partner/{partnerId}")
+	@Produces({"application/xml", "application/json"})
+	@Path("partner/id/{partnerId}")
 	public Response deletePartner(@PathParam("partnerId") String id){
 		System.out.println("Delete Method request from Client with PartnerRequest String ........");
 		PartnerActivity patActivity = new PartnerActivity();

@@ -11,6 +11,8 @@ public class BSRestfulServer{
 		JAXRSServerFactoryBean factoryBean = new JAXRSServerFactoryBean();
 		factoryBean.setResourceClasses(com.ebook.service.ProductResource.class);
 		factoryBean.setResourceClasses(com.ebook.service.PartnerResource.class);
+		factoryBean.setResourceClasses(com.ebook.service.OrderResource.class);
+		factoryBean.setResourceClasses(com.ebook.service.CustomerResource.class);
 		factoryBean.setResourceProvider(new SingletonResourceProvider(new com.ebook.service.ProductResource()));
 		factoryBean.setAddress("http://localhost:8081/");
 		Server server = factoryBean.create();
