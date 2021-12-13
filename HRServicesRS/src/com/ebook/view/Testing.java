@@ -23,6 +23,12 @@ public class Testing {
 		ProductManager prodMan = new ProductManager();
 		Product pro = prodMan.addProduct(product.getTitle(), product.getPrice(), product.getPartnerId());
 		System.out.println(pro.getPrice());
+		
+		Product product2 = new Product();
+		product2.setTitle("New Book");
+		product2.setPrice(16.42);
+		product2.setPartnerId(p2.getPartnerID());
+		prodMan.addProduct(product2.getTitle(), product2.getPrice(), product2.getPartnerId());
 	}
 
 }

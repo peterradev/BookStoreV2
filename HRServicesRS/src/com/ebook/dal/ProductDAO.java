@@ -106,6 +106,36 @@ public class ProductDAO{
 		}
 
 	}
+	
+	
+	public Set<Product> getProductByPartner(String id){
+		
+		Set<Product> products = new HashSet<>();
+		
+		try {
+			Statement st = DBHelper.getConnection().createStatement();
+			String selectProductQuery = "SELECT * from product where partnerid='"+id+"'";
+			
+			ResultSet productRS = st.executeQuery(selectProductQuery);
+			
+			while(productRS.next()) {
+				Product product = new Product();
+				product.setTitle(productRS.getString("title"));
+				product.setPrice(productRS.getDouble("price"));
+//s				product.setPartnerId(productRS.getString("partnerid"));
+				product.setPartnerId(productRS.getString("partnerid"));
+				products.add(product);
+				System.out.println("Getting Product: " + product.getTitle());
+			}
+			productRS.close();
+			return products;
+		} catch(SQLException se) {
+			System.err.println("ProductDAO: Threw a SQLException retrieving the data");
+			System.err.println(se.getMessage());
+			se.printStackTrace();
+		}
+		return products;
+	}
 
 
 	public Set<Product> getAllProducts() {

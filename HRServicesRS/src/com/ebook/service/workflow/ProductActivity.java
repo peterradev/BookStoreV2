@@ -36,6 +36,34 @@ public class ProductActivity {
 		}
 		return productRepresentations;
 	}
+	
+	
+	
+	
+	
+	public Set<ProductRepresentation> getProductByPartner(String id){
+		
+		Set<Product> products = new HashSet<Product>();
+		Set<ProductRepresentation> productRepresentations = new HashSet<>();
+		
+		products = dao.getProductByPartner(id);
+		
+		Iterator<Product> it = products.iterator();
+		while(it.hasNext()) {
+			Product pro = it.next();
+			ProductRepresentation productRepresentation = new ProductRepresentation();
+			productRepresentation.setId(pro.getId());
+			productRepresentation.setTitle(pro.getTitle());
+			productRepresentation.setPrice(pro.getPrice());
+
+			productRepresentations.add(productRepresentation);
+			
+		}
+		
+		return productRepresentations;
+		
+	}
+	
 
 	public ProductRepresentation getProduct(String id){
 		Product pro = dao.getProduct(id);
@@ -74,6 +102,9 @@ public class ProductActivity {
 		pm.deleteProduct(id);
 		return "OK";
 	}
+	
+	
+	
 	
 	
 

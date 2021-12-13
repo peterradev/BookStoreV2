@@ -59,7 +59,8 @@ public class ProductResource implements ProductService {
 	public ProductRepresentation createProduct(ProductRequest productRequest){
 		System.out.println("POST METHOD Request from Client with ......." + productRequest.getTitle() + productRequest.getPrice());
 		ProductActivity proActivity = new ProductActivity();
-		return proActivity.createProduct(productRequest.getTitle(), productRequest.getPrice());
+//		return proActivity.createProduct(productRequest.getTitle(), productRequest.getPrice());
+		return null;
 	}
 
 	@DELETE
@@ -73,5 +74,13 @@ public class ProductResource implements ProductService {
 			return Response.status(Status.OK).build();
 		}
 		return null;
+	}
+	
+	@GET
+	@Produces({"application/xml", "application/json"})
+	@Path("product/partners/{id}")
+	public Set<ProductRepresentation> getProductByPartner(@PathParam("id") String id) {
+		ProductActivity proActivity = new ProductActivity();
+		return proActivity.getProductByPartner(id);
 	}
 }

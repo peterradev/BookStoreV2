@@ -39,6 +39,8 @@ public class PartnerActivity {
 		parRep.setFirstName(pro.getFirstName());
 		parRep.setId(pro.getPartnerID());
 		parRep.setLastName(pro.getLastName());
+		
+		setLinks(parRep, id);
 
 		return parRep;
 	}
@@ -63,15 +65,15 @@ public class PartnerActivity {
 	}
 
 
-	public PartnerRepresentation createPartner(String firstName, String lastName) {
-		Partner par = dao.addPartner(firstName, lastName);
-		PartnerRepresentation parRep = new PartnerRepresentation();
-		parRep.setFirstName(par.getFirstName());
-		parRep.setLastName(par.getLastName());
-		parRep.setId(par.getPartnerID());
-
-		return parRep;
-	}
+//	public PartnerRepresentation createPartner(String firstName, String lastName) {
+//		Partner par = dao.addPartner(firstName, lastName);
+//		PartnerRepresentation parRep = new PartnerRepresentation();
+//		parRep.setFirstName(par.getFirstName());
+//		parRep.setLastName(par.getLastName());
+//		parRep.setId(par.getPartnerID());
+//
+//		return parRep;
+//	}
 
 	public String deleteParnter(String id) {
 		pm.deletePartner(id);
@@ -80,8 +82,10 @@ public class PartnerActivity {
 
 	private void setLinks(PartnerRepresentation parRep, String id){
 		Link listOrder = new Link("view", "http://localhost:8081/partnerservice/partner/"+id,"application/json");
+		Link products = new Link("products", "http://localhost:8081/productservice/product/partners/"+ id ,"application/json");
 
 		parRep.setLinks(listOrder);
+		parRep.setLinks(products);
 	}
 
 }
