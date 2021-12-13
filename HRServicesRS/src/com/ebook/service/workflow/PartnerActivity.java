@@ -28,6 +28,9 @@ public class PartnerActivity {
 			partnerRepresentation.setFirstName(par.getFirstName());
 			partnerRepresentation.setLastName(par.getLastName());
 
+			//Add link
+			setLinks(partnerRepresentation, par.getPartnerID());
+
 			partnerRepresentations.add(partnerRepresentation);
 		}
 		return partnerRepresentations;
@@ -39,7 +42,7 @@ public class PartnerActivity {
 		parRep.setFirstName(pro.getFirstName());
 		parRep.setId(pro.getPartnerID());
 		parRep.setLastName(pro.getLastName());
-		
+
 		setLinks(parRep, id);
 
 		return parRep;
@@ -58,6 +61,8 @@ public class PartnerActivity {
 			partnerRepresentation.setFirstName(par.getFirstName());
 			partnerRepresentation.setLastName(par.getLastName());
 
+			//Add link
+			setLinks(partnerRepresentation, par.getPartnerID());
 			partnerRepresentations.add(partnerRepresentation);
 		}
 		return partnerRepresentations;

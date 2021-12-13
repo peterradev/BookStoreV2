@@ -150,17 +150,18 @@ public class ProductDAO{
 			ResultSet productRS = st.executeQuery(selectProductQuery);
 			System.out.println("ItemSearch: *********** Query "+ selectProductQuery);
 
-//			Set<Product> products = new HashSet<Product>();
-
 			while(productRS.next()) {
+				// Create a new product object
 				Product product = new Product();
 				product.setId(productRS.getString("productid"));
 				product.setTitle(productRS.getString("title"));
 				product.setPrice(productRS.getDouble("price"));
 //s				product.setPartnerId(productRS.getString("partnerid"));
 				product.setPartnerId(productRS.getString("partnerid"));
+
+				// Now add this product object to the Set
 				products.add(product);
-				System.out.println("Getting Product: " + product.getTitle());
+
 			}
 
 			productRS.close();

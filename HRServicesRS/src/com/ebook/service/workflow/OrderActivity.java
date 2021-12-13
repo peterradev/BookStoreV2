@@ -28,6 +28,9 @@ public class OrderActivity {
 			orderRepresentation.setId(ord.getOrderId());
 			orderRepresentation.setOrderStatus(ord.getOrderState());
 
+			//Add Link
+			setLinks(orderRepresentation, ord.getOrderId());
+			
 			orderRepresentations.add(orderRepresentation);
 		}
 		return orderRepresentations;
@@ -35,6 +38,7 @@ public class OrderActivity {
 
 
 	public OrderRepresentation getOrder(String id) {
+		System.out.println("ORDER ID is:"+id);
 		Order ord = dao.getOrder(id);
 
 		OrderRepresentation ordRep = new OrderRepresentation();
@@ -65,7 +69,7 @@ public class OrderActivity {
 	}
 
 	private void setLinks(OrderRepresentation ordRep, String id){
-		Link listOrder = new Link("view", "http://localhost:8081/orderservice/order/"+id, "application/json");
+		Link listOrder = new Link("view", "http://localhost:8081/orderservice/order/id/"+id, "application/json+order");
 
 		ordRep.setLinks(listOrder);
 	}

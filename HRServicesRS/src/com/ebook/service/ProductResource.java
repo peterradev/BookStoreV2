@@ -26,7 +26,7 @@ public class ProductResource implements ProductService {
 
 	@GET
 	@Produces({"application/xml", "application/json"})
-	@Path("/product")
+	@Path("/products")
 	public Set<ProductRepresentation> getProducts(){
 		System.out.println("GET METHOD Request for all products .....");
 		ProductActivity proActivity = new ProductActivity();
@@ -37,7 +37,7 @@ public class ProductResource implements ProductService {
 	@Override
 	@GET
 	@Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
-	@Path("/{productId}")
+	@Path("/product/id/{productId}")
 	public ProductRepresentation getProduct(@PathParam("productId") String id) {
 		ProductActivity proActivity = new ProductActivity();
 		return proActivity.getProduct(id);
@@ -65,7 +65,7 @@ public class ProductResource implements ProductService {
 
 	@DELETE
 	@Produces({"application/xml", "applicatoin/json"})
-	@Path("product/{productId}")
+	@Path("product/id/{productId}")
 	public Response deleteProduct(@PathParam("productId") String id){
 		System.out.println("Delete Method request from Client with productRequest String ........");
 		ProductActivity proActivity = new ProductActivity();

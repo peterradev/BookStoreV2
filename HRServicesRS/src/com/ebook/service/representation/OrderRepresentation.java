@@ -13,6 +13,8 @@ public class OrderRepresentation extends AbstractRepresentation{
 	private String id;
 	private String orderStatus;
 	
+	public OrderRepresentation(){}
+	
 	public String getId() {
 		return id;
 	}

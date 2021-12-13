@@ -11,17 +11,23 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
+
 import com.ebook.service.representation.OrderRepresentation;
 import com.ebook.service.representation.OrderRequest;
+import com.ebook.service.representation.PartnerRepresentation;
 import com.ebook.service.workflow.OrderActivity;
+import com.ebook.service.workflow.PartnerActivity;
+
+@CrossOriginResourceSharing(allowAllOrigins = true)
 
 @Path("/orderservice/")
 public class OrderResource implements OrderService{
 
 	@GET
-	@Produces({"applicaton/xml", "application/json"})
-	@Path("/order")
-	public Set<OrderRepresentation > getAllOrders(){
+	@Produces({"application/xml", "application/json"})
+	@Path("/orders")
+	public Set<OrderRepresentation> getAllOrders(){
 		System.out.println("GET METHOD Request for all orders .....");
 		OrderActivity ordActivity = new OrderActivity();
 		return ordActivity.getOrders();
@@ -29,7 +35,7 @@ public class OrderResource implements OrderService{
 
 	@GET
 	@Produces({"application/xml", "application/json"})
-	@Path("/order/{orderid}")
+	@Path("/order/id/{orderid}")
 	public OrderRepresentation getOrder(@PathParam("orderid") String id){
 		System.out.println("GET METHOD Request for one order .....");
 		OrderActivity ordActivity = new OrderActivity();
