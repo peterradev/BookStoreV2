@@ -73,7 +73,7 @@ public class PartnerDAO {
 
         try {
         	//Insert the partner object
-            String parStm = "INSERT INTO Partner(partnerID, last_name, first_name) VALUES(?, ?, ?)";
+            String parStm = "INSERT INTO Partner(partnerID, first_name, last_name) VALUES(?, ?, ?)";
             parPst = con.prepareStatement(parStm);
             parPst.setString(1, par.getPartnerID());
             parPst.setString(2, par.getLastName());       
@@ -112,7 +112,7 @@ public class PartnerDAO {
     }
 	
 	
-	public Partner addPartner(String firstName, String lastName) {
+	public Partner addPartner2(String firstName, String lastName) {
 		
 		Random randomGenerator = new Random();
 	    int randomInt = randomGenerator.nextInt(10000);
@@ -128,11 +128,12 @@ public class PartnerDAO {
 	    partner.setLastName(lastName);
 	    
 	    try {
-	    	String sql = "INSERT INTO partners(partnerid, first_name, last_name) VALUES(?, ?, ?)";
+	    	String sql = "INSERT INTO partner(partnerid, first_name, last_name) VALUES(?, ?, ?)";
 	    	partPst = con.prepareStatement(sql);
 	    	partPst.setString(1, id);
 	    	partPst.setString(2, firstName);
 	    	partPst.setString(3, lastName);
+	    	partPst.executeUpdate();
 	    	return partner;
 	    }  catch(SQLException ex) {
 
@@ -157,7 +158,7 @@ public class PartnerDAO {
 		try{
 			
 			Statement st = DBHelper.getConnection().createStatement();
-			String selectPartnerQuery = "SELECT * FROM partners";
+			String selectPartnerQuery = "SELECT * FROM partner";
 
 			ResultSet partnerRS = st.executeQuery(selectPartnerQuery);
 			System.out.println("ItemSearch: *********** Query "+ selectPartnerQuery);
@@ -187,7 +188,7 @@ public class PartnerDAO {
 	
 	public void deletePartner(String id) {
 		Connection con = DBHelper.getConnection();
-		String sql = "DELETE FROM partners WHERE partnerid = ?";
+		String sql = "DELETE FROM partner WHERE partnerid = ?";
 		
 		try {
 			PreparedStatement partPst = con.prepareStatement(sql);

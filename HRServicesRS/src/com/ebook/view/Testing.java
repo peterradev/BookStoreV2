@@ -1,5 +1,7 @@
 package com.ebook.view;
 
+import com.ebook.model.item.Product;
+import com.ebook.model.item.ProductManager;
 import com.ebook.model.partner.Partner;
 import com.ebook.model.partner.PartnerManager;
 
@@ -8,23 +10,19 @@ public class Testing {
 	public static void main(String args[]) {
 		
 		Partner p1 = new Partner();
-		Partner p2 = new Partner();
-		Partner p3 = new Partner();
-		
-		p1.setFirstName("John");
-		p1.setLastName("Hill");
-
-		p2.setFirstName("Jonathan");
-		p2.setLastName("Baker");
-		
-		p3.setFirstName("Jack");
-		p3.setLastName("Black");
-		
 		PartnerManager pm = new PartnerManager();
-		pm.addPartner(p3);
-		pm.addPartner(p1);
-		pm.addPartner(p2);
+		p1.setFirstName("Jake");
+		p1.setLastName("Long");
 		
+		Product product = new Product();
+		product.setPrice(25);
+		product.setTitle("this book cost 30 dollars");
+		
+		Partner p2 = pm.addPartner(p1);
+		product.setPartnerId(p2.getPartnerID());
+		ProductManager prodMan = new ProductManager();
+		Product pro = prodMan.addProduct(product.getTitle(), product.getPrice(), product.getPartnerId());
+		System.out.println(pro.getPrice());
 	}
 
 }

@@ -31,14 +31,15 @@ public class PartnerManager {
 	}
 
 	// Insert a new partner in the DB
-	public void addPartner(Partner partner) {
+	public Partner addPartner(Partner partner) {
 
 		try {
-			partDAO.addPartner(partner);
+			return partDAO.addPartner2(partner.getFirstName(), partner.getLastName());
 		} catch (Exception se) {
 			System.err.println("PartnerService: Threw a Exception retrieving partner.");
 			System.err.println(se.getMessage());
 		}
+		return null;
 	}
 	
 	

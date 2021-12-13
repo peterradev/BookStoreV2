@@ -52,6 +52,7 @@ public class ProductDAO{
 
 	public Product addItem(String title, double price, String partnerid) {
 		
+		if(partnerid != null){
 			Product product = new Product();
 			Random randomGenerator = new Random();
 			int randomInt = randomGenerator.nextInt(10000);
@@ -67,7 +68,7 @@ public class ProductDAO{
 			PreparedStatement itemPst = null;
 
 			try {
-				String itemStm =  "INSERT INTO product(productid, title, price, partnerid) VALUES(?, ?, ?, ?)";
+				String itemStm =  "INSERT INTO product(productid, title, price) VALUES(?, ?, ?)";
 				itemPst = con.prepareStatement(itemStm);
 				itemPst.setString(1, product.getId());
 				itemPst.setString(2, product.getTitle());
@@ -88,6 +89,7 @@ public class ProductDAO{
 				}
 			}
 		
+		}
         return null;
 	}
 
@@ -127,7 +129,6 @@ public class ProductDAO{
 				product.setId(productRS.getString("productid"));
 				product.setTitle(productRS.getString("title"));
 				product.setPrice(productRS.getDouble("price"));
-//s				product.setPartnerId(productRS.getString("partnerid"));
 				product.setPartnerId(productRS.getString("partnerid"));
 				products.add(product);
 				System.out.println("Getting Product: " + product.getTitle());
