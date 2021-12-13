@@ -40,25 +40,25 @@ public class ProductActivity {
 	public ProductRepresentation getProduct(String id){
 		Product pro = dao.getProduct(id);
 //		Product pro = pm.getProduct(id);
-		String partnerid = pro.getPartnerId();
+
 		ProductRepresentation proRep = new ProductRepresentation();
 		proRep.setId(pro.getId());
 		proRep.setTitle(pro.getTitle());
 		proRep.setPrice(pro.getPrice());
 		
-		setLinks(proRep, id, partnerid);
+		setLinks(proRep, id);
 
 		return proRep;
 	}
 
 
-	public ProductRepresentation createProduct(String title, double price, String partnerid){
+	public ProductRepresentation createProduct(String title, double price){
 		
 //		Product p = new Product();
 //		p.setTitle(title);
 //		p.setPrice(price);
 //		Product rep = pm.addProduct(title, price);
-		Product rep = dao.addItem(title, price, partnerid);
+		Product rep = dao.addItem(title, price);
 
 		
 
@@ -77,11 +77,9 @@ public class ProductActivity {
 	
 	
 
-	private void setLinks(ProductRepresentation proRep, String id, String partnerid) {
-		Link deleteProduct = new Link("delete", "http://localhost:8081/productservice/product/"+id , "application/json");
-		Link partner = new Link("partner", "http://localhost:8081/partnerservice/partner/" + partnerid, "application/json");
+	private void setLinks(ProductRepresentation proRep, String id) {
+		Link listOrder = new Link("view", "http://localhost:8081/productservice/product/"+id , "application/json");
 		
-		proRep.setLinks(deleteProduct);
-		proRep.setLinks(partner);
+		proRep.setLinks(listOrder);
 	}
 }

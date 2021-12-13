@@ -61,7 +61,7 @@ public class PartnerResource implements PartnerService{
 	
 	@GET
 	@Produces({"application/xml", "application/json"})
-	@Path("/partner/{name}")
+	@Path("/partner/find/{name}")
 	public Set<PartnerRepresentation> findPartner(@PathParam("name")String name) {
 		PartnerActivity partActivity = new PartnerActivity();
 		return partActivity.findPartner(name);
