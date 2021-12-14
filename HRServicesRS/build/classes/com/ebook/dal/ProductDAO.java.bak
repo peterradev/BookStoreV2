@@ -52,10 +52,11 @@ public class ProductDAO{
 
 	public Product addItem(String title, double price, String partnerid) {
 		
+		if(partnerid != null){
 			Product product = new Product();
 			Random randomGenerator = new Random();
-			// Randomly create a productId
 			int randomInt = randomGenerator.nextInt(10000);
+			long randomLong = randomGenerator.nextLong();
 			String id = "XY" + randomInt;
 
 			product.setId(id);
@@ -67,7 +68,7 @@ public class ProductDAO{
 			PreparedStatement itemPst = null;
 
 			try {
-				String itemStm =  "INSERT INTO product(productid, title, price, partnerid) VALUES(?, ?, ?, ?)";
+				String itemStm =  "INSERT INTO product(productid, title, price) VALUES(?, ?, ?)";
 				itemPst = con.prepareStatement(itemStm);
 				itemPst.setString(1, product.getId());
 				itemPst.setString(2, product.getTitle());
@@ -88,62 +89,24 @@ public class ProductDAO{
 				}
 			}
 		
+		}
         return null;
 	}
 
 
-	public int deleteProduct(String id) {
+	public void deleteProduct(String id) {
 		Connection con = DBHelper.getConnection();
-		
 		String sql = "DELETE FROM product WHERE productID = ?";
-		int result=-1;
 		try{
 			PreparedStatement itemPst = con.prepareStatement(sql);
 			itemPst.setString(1, id);
-			result = itemPst.executeUpdate();
+			itemPst.executeUpdate();
 		} catch(SQLException se){
 			System.err.println("ProductDAO: Threw a SQLException deleting product.");
 			System.err.println(se.getMessage());
 			se.printStackTrace();
-		}finally {
-			try {
-				con.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
-		return result;
 
-	}
-	
-	
-	public Set<Product> getProductByPartner(String id){
-		
-		Set<Product> products = new HashSet<>();
-		
-		try {
-			Statement st = DBHelper.getConnection().createStatement();
-			String selectProductQuery = "SELECT * from product where partnerid='"+id+"'";
-			
-			ResultSet productRS = st.executeQuery(selectProductQuery);
-			
-			while(productRS.next()) {
-				Product product = new Product();
-				product.setTitle(productRS.getString("title"));
-				product.setPrice(productRS.getDouble("price"));
-//s				product.setPartnerId(productRS.getString("partnerid"));
-				product.setPartnerId(productRS.getString("partnerid"));
-				products.add(product);
-				System.out.println("Getting Product: " + product.getTitle());
-			}
-			productRS.close();
-			return products;
-		} catch(SQLException se) {
-			System.err.println("ProductDAO: Threw a SQLException retrieving the data");
-			System.err.println(se.getMessage());
-			se.printStackTrace();
-		}
-		return products;
 	}
 
 
@@ -159,18 +122,16 @@ public class ProductDAO{
 			ResultSet productRS = st.executeQuery(selectProductQuery);
 			System.out.println("ItemSearch: *********** Query "+ selectProductQuery);
 
+//			Set<Product> products = new HashSet<Product>();
+
 			while(productRS.next()) {
-				// Create a new product object
 				Product product = new Product();
 				product.setId(productRS.getString("productid"));
 				product.setTitle(productRS.getString("title"));
 				product.setPrice(productRS.getDouble("price"));
-//s				product.setPartnerId(productRS.getString("partnerid"));
 				product.setPartnerId(productRS.getString("partnerid"));
-
-				// Now add this product object to the Set
 				products.add(product);
-
+				System.out.println("Getting Product: " + product.getTitle());
 			}
 
 			productRS.close();

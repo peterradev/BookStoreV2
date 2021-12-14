@@ -18,6 +18,8 @@ public class CustomerDAO {
 
 	public Customer getCustomer(String customerId) {
 
+		Customer customer = new Customer();
+		
 	    try {
 	    	//Get Customer
 	    	Statement st = DBHelper.getConnection().createStatement();
@@ -27,7 +29,7 @@ public class CustomerDAO {
 	    	System.out.println("CustomerDAO: *************** Query " + selectCustomerQuery);
 
 	      //Get Customer
-    	  Customer customer = new Customer();
+    	  
 	      while ( custRS.next() ) {
 	    	  customer.setCustomerId(custRS.getString("customerID"));
 	    	  customer.setLastName(custRS.getString("last_name"));
@@ -39,9 +41,10 @@ public class CustomerDAO {
 	      // Get Address
 	      String selectAddressQuery = "SELECT addressID, street, unit, city, state, zip FROM Address WHERE customerID = '" + customerId + "'";
 	      ResultSet addRS = st.executeQuery(selectAddressQuery);
-   	  Address address = new Address();
+   	  
+	      Address address = new Address();
 
-   	  System.out.println("CustomerDAO: *************** Query " + selectAddressQuery);
+   	      System.out.println("CustomerDAO: *************** Query " + selectAddressQuery);
 
 	      while ( addRS.next() ) {
 	    	  address.setAddressId(addRS.getString("addressid"));
@@ -57,7 +60,6 @@ public class CustomerDAO {
 	      addRS.close();
 	      st.close();
 
-	      return customer;
 	    }
 	    catch (SQLException se) {
 	      System.err.println("CustomerDAO: Threw a SQLException retrieving the customer object.");
@@ -65,7 +67,7 @@ public class CustomerDAO {
 	      se.printStackTrace();
 	    }
 
-	    return null;
+	    return customer;
 	  }
 
 	public void addCustomer(Customer cust) {
@@ -120,22 +122,21 @@ public class CustomerDAO {
 		try{
 			
 			Statement st = DBHelper.getConnection().createStatement();
-			String selectCustomerQuery = "SELECT * FROM customers";
+			String selectCustomerQuery = "SELECT * FROM customer";
 
 			ResultSet customerRS = st.executeQuery(selectCustomerQuery);
 			System.out.println("ItemSearch: *********** Query "+ selectCustomerQuery);
-
-//			Set<Product> products = new HashSet<Product>();
 
 			while(customerRS.next()) {
 				Customer customer = new Customer();
 				customer.setCustomerId(customerRS.getString("customerid"));
 				customer.setFirstName(customerRS.getString("first_name"));
 				customer.setLastName(customerRS.getString("last_name"));
+				
+				customers.add(customer);
 			}
 
 			customerRS.close();
-			return customers;
 			
 		} catch (SQLException se){
 			System.err.println("ProductDAO: Threw a SQLException retrieving the data");
@@ -145,13 +146,12 @@ public class CustomerDAO {
 		return customers;
 	}
 	
-	public Customer addCustomer(String firstName, String lastName) {
+	public ResultSet addCustomer(String firstName, String lastName) {
 		Customer customer = new Customer();
 		Random randomGenerator = new Random();
 		int randomInt = randomGenerator.nextInt(10000);
-		long randomLong = randomGenerator.nextLong();
 		
-		String id = "XY" + randomInt;
+		String id = "CS" + randomInt;
 		
 		customer.setCustomerId(id);
 		customer.setFirstName(firstName);
@@ -162,12 +162,15 @@ public class CustomerDAO {
 		PreparedStatement custPst = null;
 		
 		try {
-			String custStm = "INSERT INTO customers(custoemrid, first_name, last_name) VALUES(?, ?, ?)";
+			String custStm = "INSERT INTO customer(customerid, first_name, last_name) VALUES(?, ?, ?)";
+			
 			custPst = con.prepareStatement(custStm);
 			custPst.setString(1, customer.getCustomerId());
 			custPst.setString(2, customer.getFirstName());
 			custPst.setString(3, customer.getLastName());
-			return customer;
+			
+			return custPst.executeQuery();
+			
 		} catch(SQLException ex) {
 			
 		}finally {
@@ -186,18 +189,28 @@ public class CustomerDAO {
 		}
 	
 	
-	public void deleteCustomer(String id) {
+	public int deleteCustomer(String id) {
 		Connection con = DBHelper.getConnection();
-		String sql = "DELETE FROM customers WHERE customerID = ?";
+		String sql = "DELETE FROM customer WHERE customerID = ?";
+		int result = -1;
+		
 		try{
 			PreparedStatement custPst = con.prepareStatement(sql);
 			custPst.setString(1, id);
-			custPst.executeUpdate();
+			result= custPst.executeUpdate();
 		} catch(SQLException se){
 			System.err.println("ProductDAO: Threw a SQLException deleting customer.");
 			System.err.println(se.getMessage());
 			se.printStackTrace();
+		}finally {
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
+		
+		return result;
 	}
 	
 	

@@ -13,6 +13,7 @@ public class ProductRepresentation extends AbstractRepresentation{
 	private String id;
 	private String title;
 	private double price;
+	private String partnerId;
 	
 	public ProductRepresentation() {}
 	
@@ -34,6 +35,12 @@ public class ProductRepresentation extends AbstractRepresentation{
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	public void setPartnerId(String partnerid){
+		this.partnerId = partnerid;
+	}
 
+	public String getPartnerId(){
+		return partnerId;
+	}
 
 }

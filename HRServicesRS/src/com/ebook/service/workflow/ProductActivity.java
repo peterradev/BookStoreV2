@@ -32,7 +32,7 @@ public class ProductActivity {
 			productRepresentation.setPrice(pro.getPrice());
 
 			//Add link
-			setLinks(productRepresentation, pro.getId());
+			setLinks(productRepresentation, pro.getId(), pro.getPartnerId());
 			productRepresentations.add(productRepresentation);
 		}
 		return productRepresentations;
@@ -56,7 +56,12 @@ public class ProductActivity {
 			productRepresentation.setId(pro.getId());
 			productRepresentation.setTitle(pro.getTitle());
 			productRepresentation.setPrice(pro.getPrice());
-
+			productRepresentation.setPartnerId(pro.getPartnerId());
+			
+			//Add link
+			setLinks(productRepresentation, pro.getId(), pro.getPartnerId());
+			
+			// Update the Set with new result set
 			productRepresentations.add(productRepresentation);
 
 		}
@@ -75,9 +80,9 @@ public class ProductActivity {
 		proRep.setId(pro.getId());
 		proRep.setTitle(pro.getTitle());
 		proRep.setPrice(pro.getPrice());
+		proRep.setPartnerId(pro.getPartnerId());
 		
 		//Add link
-		setLinks(proRep, pro.getId());
 		setLinks(proRep, id, partnerid);
 
 		return proRep;
@@ -86,25 +91,19 @@ public class ProductActivity {
 
 	public ProductRepresentation createProduct(String title, double price, String partnerid){
 		
-//		Product p = new Product();
-//		p.setTitle(title);
-//		p.setPrice(price);
-//		Product rep = pm.addProduct(title, price);
 		Product rep = dao.addItem(title, price, partnerid);
-
-		
 
 		ProductRepresentation proRep = new ProductRepresentation();
 		proRep.setTitle(rep.getTitle());
 		proRep.setPrice(rep.getPrice());
+		proRep.setPartnerId(rep.getPartnerId());
+		proRep.setId(rep.getId());
 
 		return proRep;
 	}
 
-	public String deleteProduct(String id){
-
-		pm.deleteProduct(id);
-		return "OK";
+	public int deleteProduct(String id){
+		return dao.deleteProduct(id);
 	}
 	
 	
@@ -113,8 +112,8 @@ public class ProductActivity {
 
 
 	private void setLinks(ProductRepresentation proRep, String id, String partnerid) {
-		Link deleteProduct = new Link("delete", "http://localhost:8081/productservice/product/"+id , "application/json");
-		Link partner = new Link("partner", "http://localhost:8081/partnerservice/partner/" + partnerid, "application/json");
+		Link deleteProduct = new Link("delete", "http://localhost:8081/productservice/product/"+id , "application/json+product");
+		Link partner = new Link("partner", "http://localhost:8081/partnerservice/partner/" + partnerid, "application/json+partner");
 		
 		proRep.setLinks(deleteProduct);
 		proRep.setLinks(partner);

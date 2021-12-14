@@ -1,5 +1,6 @@
 package com.ebook.service;
 
+import java.sql.ResultSet;
 import java.util.Set;
 
 import com.ebook.service.representation.CustomerRepresentation;
@@ -9,7 +10,7 @@ public interface CustomerService {
 
 	public Set<CustomerRepresentation> getCustomers();
 	public CustomerRepresentation getCustomer(String id);
-	public CustomerRepresentation createCustomer(CustomerRequest customerRequest);
+	public ResultSet createCustomer(CustomerRequest customerRequest);
 	
 	
 }

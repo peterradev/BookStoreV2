@@ -1,5 +1,6 @@
 package com.ebook.service;
 
+import java.sql.ResultSet;
 import java.util.Set;
 
 import javax.ws.rs.DELETE;
@@ -21,7 +22,7 @@ public class CustomerResource implements CustomerService{
 
 	@GET
 	@Produces({"application/xml", "application/json"})
-	@Path("/customer")
+	@Path("/customers")
 	public Set<CustomerRepresentation> getCustomers(){
 		System.out.println("GET METHOD Request for all customers .....");
 		CustomerActivity patActivity = new CustomerActivity();
@@ -30,7 +31,7 @@ public class CustomerResource implements CustomerService{
 
 	@GET
 	@Produces({"application/xml", "applicatoin/json"})
-	@Path("customer/{customerId}")
+	@Path("customer/id/{customerId}")
 	public CustomerRepresentation getCustomer(@PathParam("customerId") String id){
 		System.out.println("GET METHOD Request from Client with CustomerRequest string ..........");
 		CustomerActivity patActivity = new CustomerActivity();
@@ -40,7 +41,7 @@ public class CustomerResource implements CustomerService{
 	@POST
 	@Produces({"application/xml", "application/json"})
 	@Path("/customer")
-	public CustomerRepresentation createCustomer(CustomerRequest customerRequest){
+	public ResultSet createCustomer(CustomerRequest customerRequest){
 		System.out.println("POST METHOD Request from Client with ......." + customerRequest.getFirstName() + customerRequest.getLastName());
 		CustomerActivity patActivity = new CustomerActivity();
 		return patActivity.createCustomer(customerRequest.getFirstName(), customerRequest.getLastName());

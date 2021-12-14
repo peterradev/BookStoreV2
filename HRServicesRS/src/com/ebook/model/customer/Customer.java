@@ -15,7 +15,7 @@ public class Customer {
 	private List<Order> orders = new ArrayList<Order>();
 
 	public List<Order> getOrders() {
-		return orders;
+		return this.orders;
 	}
 
 	public void setOrders(List<Order> orders) {
@@ -23,7 +23,7 @@ public class Customer {
 	}
 
 	public Address getBillingAddress() {
-		return billingAddress;
+		return this.billingAddress;
 	}
 
 	public void setBillingAddress(Address billingAddress) {
@@ -31,7 +31,7 @@ public class Customer {
 	}
 
 	public Address getShippingAddress() {
-		return shippingAddress;
+		return this.shippingAddress;
 	}
 
 	public void setShippingAddress(Address shippingAddress) {
@@ -39,7 +39,7 @@ public class Customer {
 	}
 
 	public String getCustomerId() {
-		return customerId;
+		return this.customerId;
 	}
 
 	public void setCustomerId(String id) {
@@ -55,7 +55,7 @@ public class Customer {
 	}
 
 	public String getFirstName() {
-		return firstName;
+		return this.firstName;
 	}
 
 	public void setFirstName(String firstName) {
@@ -71,6 +71,6 @@ public class Customer {
 	}
 
 	public CustomerCard getCard() {
-		return card;
+		return this.card;
 	}
 }

@@ -28,17 +28,17 @@ public class ProductManager {
 		return null;
 	}
 
-	public void deleteProduct(String productId) {
+	public int deleteProduct(String productId) {
 
+		int result = -1;
 		try {
-			itemSearch.deleteProduct(productId);
-			System.out.println("ProductManager: Deleted Product");
+			result = itemSearch.deleteProduct(productId);
 		} catch(Exception se) {
 			System.err.println("ProductManager: Threw an Exception deleting the data");
 			System.err.println(se.getMessage());
 			se.printStackTrace();
 		}
-
+		
 	}
 
 	public Product addProduct(String title, double price, String partnerid) {

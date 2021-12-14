@@ -12,6 +12,7 @@ public class ProductRequest {
 
 	private String title;
 	private double price;
+	private String partnerId;
 	
 	public ProductRequest() {}
 	
@@ -28,6 +29,12 @@ public class ProductRequest {
 		this.price = price;
 	}
 	
+	public void setPartnerId(String partnerId) {
+		this.partnerId=partnerId;
+	}
 	
+	public String getPartnerId() {
+		return this.partnerId;
+	}
 	
 }

@@ -5,6 +5,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import com.ebook.model.customer.Address;
+
 @XmlRootElement(name = "Customer")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name="")
@@ -13,6 +15,7 @@ public class CustomerRepresentation extends AbstractRepresentation{
 	private String id;
 	private String firstName;
 	private String lastName;
+	private Address address;
 	
 	public CustomerRepresentation() {}
 
@@ -40,6 +43,12 @@ public class CustomerRepresentation extends AbstractRepresentation{
 		this.lastName = lastName;
 	}
 	
+	public void setAddress(Address address) {
+		this.address=address;
+	}
 	
+	public Address getAddress() {
+		return this.address;
+	}
 	
 }
