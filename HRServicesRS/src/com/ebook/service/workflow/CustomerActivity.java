@@ -56,9 +56,8 @@ public class CustomerActivity {
 		
 	}
 
-	public String deleteCustomer(String id) {
-		pm.deleteCustomer(id);
-		return "OK";
+	public int deleteCustomer(String id) {
+		return pm.deleteCustomer(id);
 	}
 
 	private void setLinks(CustomerRepresentation cusRep, String id){
