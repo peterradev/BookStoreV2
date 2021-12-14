@@ -43,15 +43,17 @@ public class CustomerManager {
 		}
 	}
 	
-	public void deleteCustomer(String customerId) {
+	public int deleteCustomer(String customerId) {
+		int result = -1;
 		try {
-			custDAO.deleteCustomer(customerId);
+			result =custDAO.deleteCustomer(customerId);
 			System.out.println("CustomerManager: Deleted Customer");
 		} catch(Exception se) {
 			System.err.println("CustomerManager: Threw an Exception deleting the customer");
 			System.err.println(se.getMessage());
 			se.printStackTrace();
 		}
+		return result;
 	}
 
 }

@@ -48,15 +48,10 @@ public class CustomerResource implements CustomerService{
 	}
 
 	@DELETE
-	@Produces({"application/xml", "applicatoin/json"})
 	@Path("customer/{customerId}")
-	public Response deleteCustomer(@PathParam("customerId") String id){
+	public int deleteCustomer(@PathParam("customerId") String id){
 		System.out.println("Delete Method request from Client with CustomerRequest String ........");
 		CustomerActivity patActivity = new CustomerActivity();
-		String res = patActivity.deleteCustomer(id);
-		if(res.equals("OK")){
-			return Response.status(Status.OK).build();
-		}
-		return null;
+		return patActivity.deleteCustomer(id);
 	}
 }
